@@ -55,15 +55,15 @@ class RequestNewDatasetId(BaseHandler):
             newSessionId = float(a['dsid'])+1
         self.write_json({"dsid":newSessionId})
 
-def newModel(dsid):
+def newModel(db, clf, dsid):
     # create feature vectors from database
     f=[]
-    for a in self.db.labeledinstances.find({"dsid":dsid}):
+    for a in db.labeledinstances.find({"dsid":dsid}):
         f.append([float(val) for val in a['feature']])
 
     # create label vector from database
     l=[]
-    for a in self.db.labeledinstances.find({"dsid":dsid}):
+    for a in db.labeledinstances.find({"dsid":dsid}):
         l.append(a['label'])
 
     # fit the model to the data
@@ -72,7 +72,7 @@ def newModel(dsid):
     if l:
         c1.fit(f,l) # training
         lstar = c1.predict(f)
-        self.clf[dsid] = c1
+        clf[dsid] = c1
 
         acc = sum(lstar==l)/float(len(l))
         bytes = pickle.dumps(c1)
@@ -94,7 +94,7 @@ class UpdateModelForDatasetId(BaseHandler):
         '''
         dsid = self.get_int_arg("dsid",default=0)
 
-        acc = newModel(dsid)
+        acc = newModel(self.db, self.clf, dsid)
 
         # send back the resubstitution accuracy
         # if training takes a while, we are blocking tornado!! No!!
@@ -120,7 +120,7 @@ class PredictOneFromDatasetId(BaseHandler):
             if modelPersistence:
                 self.clf[dsid] = pickle.loads(modelPersistence['model'])
             else:
-                newModel(dsid)
+                newModel(self.db, self.clf, dsid)
 
         predLabel = self.clf[dsid].predict(fvals);
         self.write_json({"prediction":str(predLabel)})
