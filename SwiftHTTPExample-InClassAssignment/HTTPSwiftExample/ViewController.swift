@@ -15,7 +15,8 @@
 //    ifconfig |grep inet   
 // to see what your public facing IP address is, the ip address can be used here
 //let SERVER_URL = "http://erics-macbook-pro.local:8000" // change this for your server name!!!
-let SERVER_URL = "http://10.8.109.49:8000" // change this for your server name!!!
+//let SERVER_URL = "http://129.119.235.12:8000" // localhost
+let SERVER_URL = "http://104.236.107.228:8000" // digital ocean
 
 import UIKit
 import CoreMotion
@@ -43,7 +44,14 @@ class ViewController: UIViewController, URLSessionDelegate {
     @IBOutlet weak var downArrow: UILabel!
     @IBOutlet weak var leftArrow: UILabel!
     @IBOutlet weak var largeMotionMagnitude: UIProgressView!
-    
+	@IBOutlet weak var dsidPicker: UIPickerView!
+	
+	var dsids: [Int] = Array(1...100) {
+		didSet {
+			self.dsidPicker.reloadAllComponents()
+		}
+	}
+	
     // MARK: Class Properties with Observers
     enum CalibrationStage {
         case notCalibrating
@@ -232,6 +240,9 @@ class ViewController: UIViewController, URLSessionDelegate {
     // MARK: View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		self.dsidPicker.delegate = self
+		self.dsidPicker.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
         
         let sessionConfig = URLSessionConfiguration.ephemeral
@@ -254,6 +265,7 @@ class ViewController: UIViewController, URLSessionDelegate {
         startMotionUpdates()
         
         dsid = 2 // set this and it will update UI
+		dsidPicker.reloadAllComponents()
     }
 
     //MARK: Get New Dataset ID
@@ -450,6 +462,27 @@ class ViewController: UIViewController, URLSessionDelegate {
         }
     }
 
+	
+}
+
+
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+	
+	func numberOfComponents(in pickerView: UIPickerView) -> Int {
+		return 1
+	}
+	
+	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+		return dsids.count
+	}
+	
+	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		return "\(dsids[row])"
+	}
+	
+	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+		self.dsid = dsids[row]
+	}
 }
 
 
