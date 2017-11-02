@@ -55,34 +55,46 @@ class RequestNewDatasetId(BaseHandler):
             newSessionId = float(a['dsid'])+1
         self.write_json({"dsid":newSessionId})
 
+def newModel(dsid):
+    # create feature vectors from database
+    f=[]
+    for a in self.db.labeledinstances.find({"dsid":dsid}):
+        f.append([float(val) for val in a['feature']])
+
+    # create label vector from database
+    l=[]
+    for a in self.db.labeledinstances.find({"dsid":dsid}):
+        l.append(a['label'])
+
+    # fit the model to the data
+    c1 = KNeighborsClassifier(n_neighbors=1)
+    acc = -1
+    if l:
+        c1.fit(f,l) # training
+        lstar = c1.predict(f)
+        self.clf[dsid] = c1
+
+        acc = sum(lstar==l)/float(len(l))
+        bytes = pickle.dumps(c1)
+
+        self.db.models.update(
+            {"dsid": dsid},
+            {"$set":
+                {
+                    "model": Binary(bytes)
+                }
+            },
+            upsert=True
+        )
+    return acc
+
 class UpdateModelForDatasetId(BaseHandler):
     def get(self):
         '''Train a new model (or update) for given dataset ID
         '''
         dsid = self.get_int_arg("dsid",default=0)
 
-        # create feature vectors from database
-        f=[];
-        for a in self.db.labeledinstances.find({"dsid":dsid}): 
-            f.append([float(val) for val in a['feature']])
-
-        # create label vector from database
-        l=[];
-        for a in self.db.labeledinstances.find({"dsid":dsid}): 
-            l.append(a['label'])
-
-        # fit the model to the data
-        c1 = KNeighborsClassifier(n_neighbors=1);
-        acc = -1;
-        if l:
-            c1.fit(f,l) # training
-            lstar = c1.predict(f)
-            self.clf = c1
-            acc = sum(lstar==l)/float(len(l))
-            bytes = pickle.dumps(c1)
-            self.db.models.update({"dsid":dsid},
-                {  "$set": {"model":Binary(bytes)}  },
-                upsert=True)
+        acc = newModel(dsid)
 
         # send back the resubstitution accuracy
         # if training takes a while, we are blocking tornado!! No!!
@@ -92,7 +104,7 @@ class PredictOneFromDatasetId(BaseHandler):
     def post(self):
         '''Predict the class of a sent feature vector
         '''
-        data = json.loads(self.request.body.decode("utf-8"))    
+        data = json.loads(self.request.body.decode("utf-8"))
 
         vals = data['feature'];
         fvals = [float(val) for val in vals];
@@ -101,9 +113,14 @@ class PredictOneFromDatasetId(BaseHandler):
 
         # load the model from the database (using pickle)
         # we are blocking tornado!! no!!
-        if(self.clf == []):
+
+        if dsid not in self.clf:
             print('Loading Model From DB')
-            tmp = self.db.models.find_one({"dsid":dsid})
-            self.clf = pickle.loads(tmp['model'])
-        predLabel = self.clf.predict(fvals);
+            modelPersistence = self.db.models.find_one({"dsid":dsid})
+            if modelPersistence:
+                self.clf[dsid] = pickle.loads(modelPersistence['model'])
+            else:
+                newModel(dsid)
+
+        predLabel = self.clf[dsid].predict(fvals);
         self.write_json({"prediction":str(predLabel)})
