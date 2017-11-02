@@ -77,7 +77,7 @@ def newModel(db, clf, dsid):
         acc = sum(lstar==l)/float(len(l))
         bytes = pickle.dumps(c1)
 
-        self.db.models.update(
+        db.models.update(
             {"dsid": dsid},
             {"$set":
                 {
