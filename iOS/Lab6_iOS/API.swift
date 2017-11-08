@@ -92,7 +92,7 @@ class API: NSObject, URLSessionDelegate {
 		
 		guard let body = jsonEncode(dictionary: submission) else {
 			print("[API.getPrediction(_:)] Could not encode data.")
-			return
+			return nil
 		}
 		
 		request.httpMethod = "POST"
