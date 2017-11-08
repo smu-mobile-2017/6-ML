@@ -1,0 +1,568 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01876C9F66D9B79509923D7BA79C6AEA /* TouchDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420C4FA7AA7059C8A7D088DEF15DBD6B /* TouchDrawView.swift */; };
+		6A55FA117C6C0AA180B91FB4C253E0E6 /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB544135E776F90D0E0E86D196C8BD /* Stroke.swift */; };
+		7416CDB8771FA45172EC794A57FC43B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		759FD7CF6BD6B3A5450902DCED6C6F65 /* Pods-Lab6_iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CBD65E372D7DC8BA89447CFCECB58FF0 /* Pods-Lab6_iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		981BAF0C663DFE55E2C001ED18E58E00 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		981D0806EF9251C10A9BA1D8D36FA72D /* StrokeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67816C0C7717A7C0F8732B1F630C2DA4 /* StrokeSettings.swift */; };
+		E35A1650E1682064ED22D8F3B2B36E99 /* TouchDraw-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A2899DF10A20CF07198933CA17617D84 /* TouchDraw-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4760815466A8AC007D64DADC8D96892 /* Pods-Lab6_iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FA35586732067F71AB6FAB5F80C9BBCD /* Pods-Lab6_iOS-dummy.m */; };
+		F659DE71D72BBC00FADE287DEB7B1287 /* TouchDraw-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2824B9DAA3C26F308DDBB74C327A60 /* TouchDraw-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		58EB37F66980C5009E3BE5B25D1FF014 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A040FF42681298EE8328C4E51B6DDE79;
+			remoteInfo = TouchDraw;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05950201F4EF163377738B4AF1CDD13A /* Pods-Lab6_iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Lab6_iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		19EB7205DF279B2A51473230BA7AD7CC /* TouchDraw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TouchDraw.framework; path = TouchDraw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ADA4487697D3514EDF46F81C7DCCF0A /* Pods-Lab6_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Lab6_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		361798FFAF2A3B57BFEE7C9733B2588C /* Pods-Lab6_iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Lab6_iOS-frameworks.sh"; sourceTree = "<group>"; };
+		420C4FA7AA7059C8A7D088DEF15DBD6B /* TouchDrawView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TouchDrawView.swift; path = Sources/TouchDrawView.swift; sourceTree = "<group>"; };
+		45CE38185D59E7C8B274B62AF70EBB9C /* Pods_Lab6_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Lab6_iOS.framework; path = "Pods-Lab6_iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		585F0D1F47AE3C37E7E18B09BB234F00 /* TouchDraw.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TouchDraw.modulemap; sourceTree = "<group>"; };
+		5DCC891577B5424264F42F7C99B18345 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		67816C0C7717A7C0F8732B1F630C2DA4 /* StrokeSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StrokeSettings.swift; path = Sources/StrokeSettings.swift; sourceTree = "<group>"; };
+		7E2824B9DAA3C26F308DDBB74C327A60 /* TouchDraw-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TouchDraw-dummy.m"; sourceTree = "<group>"; };
+		7ED5184FEC93063E785533D5D830F126 /* Pods-Lab6_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Lab6_iOS.modulemap"; sourceTree = "<group>"; };
+		84BF2B626467BEFF7845BE3E699BBE06 /* TouchDraw.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TouchDraw.xcconfig; sourceTree = "<group>"; };
+		85F4319B03E68DAEA136A8832C25DEB6 /* Pods-Lab6_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Lab6_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A19B4377014C23D3C88826AE0932A4DA /* Pods-Lab6_iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Lab6_iOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		A2899DF10A20CF07198933CA17617D84 /* TouchDraw-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TouchDraw-umbrella.h"; sourceTree = "<group>"; };
+		AD96B9371588BCA08D7FF1234F7ADF43 /* Pods-Lab6_iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Lab6_iOS-resources.sh"; sourceTree = "<group>"; };
+		C1D288C547B21D81FD43E8F5164E5593 /* TouchDraw-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TouchDraw-prefix.pch"; sourceTree = "<group>"; };
+		C4DB544135E776F90D0E0E86D196C8BD /* Stroke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stroke.swift; path = Sources/Stroke.swift; sourceTree = "<group>"; };
+		CBD65E372D7DC8BA89447CFCECB58FF0 /* Pods-Lab6_iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Lab6_iOS-umbrella.h"; sourceTree = "<group>"; };
+		F165740CE47EC3AA9F8620ABBB39ACE3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA35586732067F71AB6FAB5F80C9BBCD /* Pods-Lab6_iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Lab6_iOS-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		22823B843C19D528EDF43006C7F5BA32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				981BAF0C663DFE55E2C001ED18E58E00 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A477629314AB93E261A8DB9CC811B536 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7416CDB8771FA45172EC794A57FC43B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E7BD66B3FF61B5FA03531A0F506DD20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				45CE38185D59E7C8B274B62AF70EBB9C /* Pods_Lab6_iOS.framework */,
+				19EB7205DF279B2A51473230BA7AD7CC /* TouchDraw.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32B9CA906E4B57BB45587C2BA4B3F983 /* Pods-Lab6_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F165740CE47EC3AA9F8620ABBB39ACE3 /* Info.plist */,
+				7ED5184FEC93063E785533D5D830F126 /* Pods-Lab6_iOS.modulemap */,
+				05950201F4EF163377738B4AF1CDD13A /* Pods-Lab6_iOS-acknowledgements.markdown */,
+				A19B4377014C23D3C88826AE0932A4DA /* Pods-Lab6_iOS-acknowledgements.plist */,
+				FA35586732067F71AB6FAB5F80C9BBCD /* Pods-Lab6_iOS-dummy.m */,
+				361798FFAF2A3B57BFEE7C9733B2588C /* Pods-Lab6_iOS-frameworks.sh */,
+				AD96B9371588BCA08D7FF1234F7ADF43 /* Pods-Lab6_iOS-resources.sh */,
+				CBD65E372D7DC8BA89447CFCECB58FF0 /* Pods-Lab6_iOS-umbrella.h */,
+				85F4319B03E68DAEA136A8832C25DEB6 /* Pods-Lab6_iOS.debug.xcconfig */,
+				2ADA4487697D3514EDF46F81C7DCCF0A /* Pods-Lab6_iOS.release.xcconfig */,
+			);
+			name = "Pods-Lab6_iOS";
+			path = "Target Support Files/Pods-Lab6_iOS";
+			sourceTree = "<group>";
+		};
+		3536B86EE53F89C18BE93995756AB7F5 /* TouchDraw */ = {
+			isa = PBXGroup;
+			children = (
+				C4DB544135E776F90D0E0E86D196C8BD /* Stroke.swift */,
+				67816C0C7717A7C0F8732B1F630C2DA4 /* StrokeSettings.swift */,
+				420C4FA7AA7059C8A7D088DEF15DBD6B /* TouchDrawView.swift */,
+				610C188F48D1A2AE94933432EFB40AF0 /* Support Files */,
+			);
+			name = TouchDraw;
+			path = TouchDraw;
+			sourceTree = "<group>";
+		};
+		6093345852DF332892CDEEBEA50DCEF8 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				32B9CA906E4B57BB45587C2BA4B3F983 /* Pods-Lab6_iOS */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		610C188F48D1A2AE94933432EFB40AF0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DCC891577B5424264F42F7C99B18345 /* Info.plist */,
+				585F0D1F47AE3C37E7E18B09BB234F00 /* TouchDraw.modulemap */,
+				84BF2B626467BEFF7845BE3E699BBE06 /* TouchDraw.xcconfig */,
+				7E2824B9DAA3C26F308DDBB74C327A60 /* TouchDraw-dummy.m */,
+				C1D288C547B21D81FD43E8F5164E5593 /* TouchDraw-prefix.pch */,
+				A2899DF10A20CF07198933CA17617D84 /* TouchDraw-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TouchDraw";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				EB4080A1653486FB2F710F89B38F8EBC /* Pods */,
+				0E7BD66B3FF61B5FA03531A0F506DD20 /* Products */,
+				6093345852DF332892CDEEBEA50DCEF8 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		EB4080A1653486FB2F710F89B38F8EBC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3536B86EE53F89C18BE93995756AB7F5 /* TouchDraw */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		087255742DB741A522C76374A3853D59 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E35A1650E1682064ED22D8F3B2B36E99 /* TouchDraw-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		486FEA1434C99EA781D225CBEC047DF5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				759FD7CF6BD6B3A5450902DCED6C6F65 /* Pods-Lab6_iOS-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1938B3C48BE2343B770CE93DDA27D1E2 /* Pods-Lab6_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FC6F210DF67EC04FBFD6C3DB792A6E8 /* Build configuration list for PBXNativeTarget "Pods-Lab6_iOS" */;
+			buildPhases = (
+				4152BFFE61C2B808A9898029B36265D2 /* Sources */,
+				22823B843C19D528EDF43006C7F5BA32 /* Frameworks */,
+				486FEA1434C99EA781D225CBEC047DF5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F7316D53E1F37B7D3688A1DF5EEF5B3 /* PBXTargetDependency */,
+			);
+			name = "Pods-Lab6_iOS";
+			productName = "Pods-Lab6_iOS";
+			productReference = 45CE38185D59E7C8B274B62AF70EBB9C /* Pods_Lab6_iOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A040FF42681298EE8328C4E51B6DDE79 /* TouchDraw */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D9D54306781E107C19FF82787FF0AEA /* Build configuration list for PBXNativeTarget "TouchDraw" */;
+			buildPhases = (
+				76A6DE3A75BCF93A4495CFDAEF0EF03E /* Sources */,
+				A477629314AB93E261A8DB9CC811B536 /* Frameworks */,
+				087255742DB741A522C76374A3853D59 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TouchDraw;
+			productName = TouchDraw;
+			productReference = 19EB7205DF279B2A51473230BA7AD7CC /* TouchDraw.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 0E7BD66B3FF61B5FA03531A0F506DD20 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1938B3C48BE2343B770CE93DDA27D1E2 /* Pods-Lab6_iOS */,
+				A040FF42681298EE8328C4E51B6DDE79 /* TouchDraw */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4152BFFE61C2B808A9898029B36265D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4760815466A8AC007D64DADC8D96892 /* Pods-Lab6_iOS-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76A6DE3A75BCF93A4495CFDAEF0EF03E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A55FA117C6C0AA180B91FB4C253E0E6 /* Stroke.swift in Sources */,
+				981D0806EF9251C10A9BA1D8D36FA72D /* StrokeSettings.swift in Sources */,
+				F659DE71D72BBC00FADE287DEB7B1287 /* TouchDraw-dummy.m in Sources */,
+				01876C9F66D9B79509923D7BA79C6AEA /* TouchDrawView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F7316D53E1F37B7D3688A1DF5EEF5B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TouchDraw;
+			target = A040FF42681298EE8328C4E51B6DDE79 /* TouchDraw */;
+			targetProxy = 58EB37F66980C5009E3BE5B25D1FF014 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		12C4B864767C59600DBFA238F1E2F8BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		1E4FA8473884393C1F801ACCB07D6F0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84BF2B626467BEFF7845BE3E699BBE06 /* TouchDraw.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TouchDraw/TouchDraw-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TouchDraw/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TouchDraw/TouchDraw.modulemap";
+				PRODUCT_NAME = TouchDraw;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		507FFFEF3246B7199B0E09C1151712B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85F4319B03E68DAEA136A8832C25DEB6 /* Pods-Lab6_iOS.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Lab6_iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Lab6_iOS/Pods-Lab6_iOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Lab6_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		59F0302F2371FCC6B73EF0A418D40734 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		8525AE31E0AC2771BC02814E841F1554 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84BF2B626467BEFF7845BE3E699BBE06 /* TouchDraw.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TouchDraw/TouchDraw-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TouchDraw/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TouchDraw/TouchDraw.modulemap";
+				PRODUCT_NAME = TouchDraw;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E2F0189B8C1A417BF7B9EDDEE4802450 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2ADA4487697D3514EDF46F81C7DCCF0A /* Pods-Lab6_iOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Lab6_iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Lab6_iOS/Pods-Lab6_iOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Lab6_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59F0302F2371FCC6B73EF0A418D40734 /* Debug */,
+				12C4B864767C59600DBFA238F1E2F8BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FC6F210DF67EC04FBFD6C3DB792A6E8 /* Build configuration list for PBXNativeTarget "Pods-Lab6_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				507FFFEF3246B7199B0E09C1151712B5 /* Debug */,
+				E2F0189B8C1A417BF7B9EDDEE4802450 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D9D54306781E107C19FF82787FF0AEA /* Build configuration list for PBXNativeTarget "TouchDraw" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8525AE31E0AC2771BC02814E841F1554 /* Debug */,
+				1E4FA8473884393C1F801ACCB07D6F0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

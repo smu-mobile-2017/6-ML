@@ -1,0 +1,6 @@
+framework module Pods_Lab6_iOS {
+  umbrella header "Pods-Lab6_iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
