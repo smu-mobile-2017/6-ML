@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/phrz/Repos/0-mslc/6-ML/iOS/Lab6_iOS/TrainViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:Lab6_iOS.xcodeproj">
    </FileRef>
    <FileRef

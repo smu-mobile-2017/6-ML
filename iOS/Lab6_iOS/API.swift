@@ -6,7 +6,7 @@
 //  Copyright © 2017 Justin Wilson. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // Implicitly Assigned Raw Values
 // https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID535
@@ -41,6 +41,12 @@ class API: NSObject, URLSessionDelegate {
 			delegate: self,
 			delegateQueue: self.sessionQueue
 		)
+	}
+	
+	// given an arbitrary image, resize to 28x28, grayscale PNG data
+	private func prepare(image: UIImage) -> Data {
+		print("Warning: prepare(image:) is a stub, always returns nil")
+		return Data()
 	}
 
 	func send(features: [Double], withLabel label: NumberLabel) {

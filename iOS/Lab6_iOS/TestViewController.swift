@@ -1,20 +1,20 @@
 //
-//  TrainViewController.swift
-//  
+//  TestViewController.swift
+//  Lab6_iOS
 //
 //  Created by Paul Herz on 2017-11-08.
+//  Copyright © 2017 Justin Wilson. All rights reserved.
 //
 
 import UIKit
 
-class TrainViewController: UIViewController {
+class TestViewController: UIViewController {
 
 	@IBOutlet weak var drawView: DrawView!
 	
-	override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 		drawView.delegate = self
-		drawView.style = .inverted
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,9 +23,8 @@ class TrainViewController: UIViewController {
     }
 }
 
-extension TrainViewController: DrawViewDelegate {
+extension TestViewController: DrawViewDelegate {
 	func didPressSendButton(_ drawView: DrawView) {
-		print("[TrainViewController] didPressSendButton")
-		
+		print("[TestViewController] didPressSendButton")
 	}
 }
