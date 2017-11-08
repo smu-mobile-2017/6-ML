@@ -1,11 +1,22 @@
 
 import UIKit
+import TouchDraw
 
 class TrainViewController: UIViewController {
+	@IBOutlet var touchDrawView: TouchDrawView!
+	@IBOutlet var drawLabel: UILabel!
+	
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+	}
+	
+	@IBAction func clearButton(_ sender: Any) {
+		touchDrawView.clearDrawing()
+	}
+	
+	@IBAction func sendButton(_ sender: Any) {
 	}
 }
 

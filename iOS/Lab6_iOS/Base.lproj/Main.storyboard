@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,13 +22,62 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPh-Ea-Lb1" customClass="TouchDrawView" customModule="TouchDraw">
+                                <rect key="frame" x="16" y="162" width="343" height="343"/>
+                                <color key="backgroundColor" red="0.94415884067357514" green="0.94415884067357514" blue="0.94415884067357514" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cPh-Ea-Lb1" secondAttribute="height" multiplier="1:1" id="2Sz-Xu-7EB"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMY-VZ-A8D">
+                                <rect key="frame" x="16" y="513" width="37" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" red="0.94415884067357514" green="0.065853759283465832" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PTz-dG-tQ6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zz-8i-JGe">
+                                <rect key="frame" x="323" y="513" width="36" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HSG-vH-FsE"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draw a 7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fB9-Hn-12M">
+                                <rect key="frame" x="16" y="118" width="343" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fB9-Hn-12M" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="E58-2X-70p"/>
+                            <constraint firstItem="PMY-VZ-A8D" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="FGd-QT-fil"/>
+                            <constraint firstItem="3Zz-8i-JGe" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="S3c-uN-Bgr"/>
+                            <constraint firstItem="cPh-Ea-Lb1" firstAttribute="top" secondItem="fB9-Hn-12M" secondAttribute="bottom" constant="8" id="dMg-oJ-4Vn"/>
+                            <constraint firstItem="cPh-Ea-Lb1" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="kJ3-bc-wkZ"/>
+                            <constraint firstItem="3Zz-8i-JGe" firstAttribute="top" secondItem="cPh-Ea-Lb1" secondAttribute="bottom" constant="8" id="ld1-BO-fHr"/>
+                            <constraint firstItem="cPh-Ea-Lb1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="ra9-gi-Jkk"/>
+                            <constraint firstItem="fB9-Hn-12M" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="ufm-rg-Vqk"/>
+                            <constraint firstItem="PMY-VZ-A8D" firstAttribute="top" secondItem="cPh-Ea-Lb1" secondAttribute="bottom" constant="8" id="vTF-M2-ag6"/>
+                            <constraint firstItem="cPh-Ea-Lb1" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="vhl-72-xeo"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Training" id="QLN-43-v8y"/>
+                    <connections>
+                        <outlet property="drawLabel" destination="fB9-Hn-12M" id="enl-Qg-eCu"/>
+                        <outlet property="touchDrawView" destination="cPh-Ea-Lb1" id="SCl-FA-hno"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="562" y="293"/>
+            <point key="canvasLocation" x="561.5" y="292.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="caE-GD-6d6">
