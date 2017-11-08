@@ -8,137 +8,166 @@
 
 import Foundation
 
-class API {
+// Implicitly Assigned Raw Values
+// https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID535
 
-//MARK: Comm with Server
-	func sendFeatures(_ array:[Double], withLabel label:CalibrationStage){
-		let baseURL = "\(SERVER_URL)/AddDataPoint"
-		let postUrl = URL(string: "\(baseURL)")
+enum NumberLabel: Int {
+	case zero = 0, one, two, three, four, five, six, seven, eight, nine
+}
+
+class API: NSObject, URLSessionDelegate {
 	
-		// create a custom HTTP POST request
-		var request = URLRequest(url: postUrl!)
+	// static let API.serverURL = "http://129.119.235.12:8000" // local development
+	static let serverURL = "http://104.236.107.228:8000" // DigitalOcean
 	
-		// data to send in body of post request (send arguments as json)
-		let jsonUpload:NSDictionary = ["feature":array,
-									   "label":"\(label)",
-			"dsid":self.dsid]
+	typealias JSONDictionary = [String: Any]
 	
+	private var session: URLSession!
+	private let sessionQueue = OperationQueue()
 	
-		let requestBody:Data? = self.convertDictionaryToData(with:jsonUpload)
-	
-		request.httpMethod = "POST"
-		request.httpBody = requestBody
-	
-		let postTask : URLSessionDataTask = self.session.dataTask(with: request,
-																  completionHandler:{(data, response, error) in
-																	if(error != nil){
-																		if let res = response{
-																			print("Response:\n",res)
-																		}
-																	}
-																	else{
-																		let jsonDictionary = self.convertDataToDictionary(with: data)
-																		
-																		print(jsonDictionary["feature"]!)
-																		print(jsonDictionary["label"]!)
-																	}
-																	
-		})
-	
-		postTask.resume() // start the task
+	override init() {
+		super.init()
+		
+		let config: URLSessionConfiguration = {
+			let c = URLSessionConfiguration.ephemeral
+			c.timeoutIntervalForRequest = 5.0
+			c.timeoutIntervalForResource = 8.0
+			c.httpMaximumConnectionsPerHost = 1
+			return c
+		}()
+		
+		self.session = URLSession(
+			configuration: config,
+			delegate: self,
+			delegateQueue: self.sessionQueue
+		)
 	}
 
-	func getPrediction(_ array:[Double]){
-		let baseURL = "\(SERVER_URL)/PredictOne"
-		let postUrl = URL(string: "\(baseURL)")
+	func send(features: [Double], withLabel label: NumberLabel) {
 		
-		// create a custom HTTP POST request
-		var request = URLRequest(url: postUrl!)
+		let url = URL(string: "\(API.serverURL)/AddDataPoint")
+		var request = URLRequest(url: url!)
+	
+		// data to send in body of post request (send arguments as json)
+		let submission: JSONDictionary = [
+			"feature": features,
+			"label": "\(label)"
+		]
+		
+		guard let body = jsonEncode(dictionary: submission) else {
+			print("[API.send(features:withLabel:)] Could not encode data.")
+			return
+		}
+	
+		request.httpMethod = "POST"
+		request.httpBody = body
+	
+		let task = self.session.dataTask(with: request)
+		{ data, response, error in
+			guard error == nil else { print(error!); return }
+			guard let data = data else { print("No data"); return }
+			
+			guard let dictionary = self.jsonDecode(data: data) else {
+				print("[API.send(features:withLabel:)] Could not decode server response:")
+				print(String(data: data, encoding: .utf8) ?? "(nil)")
+				return
+			}
+			
+			print(dictionary["feature"]!)
+			print(dictionary["label"]!)
+		}
+	
+		task.resume()
+	}
+
+	func classify(features: [Double]) -> NumberLabel? {
+		
+		let url = URL(string: "\(API.serverURL)/PredictOne")
+		var request = URLRequest(url: url!)
 		
 		// data to send in body of post request (send arguments as json)
-		let jsonUpload:NSDictionary = ["feature":array, "dsid":self.dsid]
+		let submission = [
+			"feature": features
+		]
 		
-		
-		let requestBody:Data? = self.convertDictionaryToData(with:jsonUpload)
-		
-		request.httpMethod = "POST"
-		request.httpBody = requestBody
-		
-		let postTask : URLSessionDataTask = self.session.dataTask(with: request)
-		{ data, response, error in
-			if error = error){
-				if let res = response{
-					print("Response:\n",res)
-				}
-			}
-			else{
-				let jsonDictionary = self.convertDataToDictionary(with: data)
-				
-				let labelResponse = jsonDictionary["prediction"]!
-				print(labelResponse)
-				self.displayLabelResponse(labelResponse as! String)
-				
-			}
-																	
+		guard let body = jsonEncode(dictionary: submission) else {
+			print("[API.getPrediction(_:)] Could not encode data.")
+			return
 		}
 		
-		postTask.resume() // start the task
+		request.httpMethod = "POST"
+		request.httpBody = body
+		
+		let task = self.session.dataTask(with: request)
+		{ data, response, error in
+			guard error == nil else { print(error!); return }
+			guard let data = data else { print("No data"); return }
+			
+			guard let dictionary = self.jsonDecode(data: data) else {
+				print("[API.getPrediction(_:)] Could not decode server response:")
+				print(String(data: data, encoding: .utf8) ?? "(nil)")
+				return
+			}
+			
+			let labelResponse = dictionary["prediction"]!
+			print(labelResponse)
+		}
+		
+		task.resume()
+		
+		print("Warning: classify(features:) is a stub and always returns nil")
+		return nil
 	}
 
 
 
-	@IBAction func makeModel(_ sender: AnyObject) {
+	func makeModel() {
 		
-		// create a GET request for server to update the ML model with current data
-		let baseURL = "\(SERVER_URL)/UpdateModel"
-		let query = "?dsid=\(self.dsid)"
+		let url = URL(string: "\(API.serverURL)/UpdateModel")
+		let request: URLRequest = URLRequest(url: url!)
 		
-		let getUrl = URL(string: baseURL+query)
-		let request: URLRequest = URLRequest(url: getUrl!)
-		let dataTask : URLSessionDataTask = self.session.dataTask(with: request,
-																  completionHandler:{(data, response, error) in
-																	// handle error!
-																	if (error != nil) {
-																		if let res = response{
-																			print("Response:\n",res)
-																		}
-																	}
-																	else{
-																		let jsonDictionary = self.convertDataToDictionary(with: data)
-																		
-																		if let resubAcc = jsonDictionary["resubAccuracy"]{
-																			print("Resubstitution Accuracy is", resubAcc)
-																		}
-																	}
-																	
-		})
+		let task = self.session.dataTask(with: request)
+		{ data, response, error in
+			guard error == nil else { print(error!); return }
+			guard let data = data else { print("No data"); return }
+			
+			guard let dictionary = self.jsonDecode(data: data) else {
+				print("[API.makeModel(_:)] Could not decode server response:")
+				print(String(data: data, encoding: .utf8) ?? "(nil)")
+				return
+			}
+			
+			if let resubAcc = dictionary["resubAccuracy"] {
+				print("Resubstitution Accuracy is", resubAcc)
+			}
+		}
 		
-		dataTask.resume() // start the task
-		
+		task.resume()
 	}
-
-	//MARK: JSON Conversion Functions
-	func convertDictionaryToData(with jsonUpload:NSDictionary) -> Data?{
-		do { // try to make JSON and deal with errors using do/catch block
-			let requestBody = try JSONSerialization.data(withJSONObject: jsonUpload, options:JSONSerialization.WritingOptions.prettyPrinted)
-			return requestBody
+	
+	func jsonEncode(dictionary: JSONDictionary) -> Data? {
+		do {
+			let data = try JSONSerialization.data(
+				withJSONObject: dictionary,
+				options: .prettyPrinted
+			)
+			return data
 		} catch {
 			print("json error: \(error.localizedDescription)")
 			return nil
 		}
 	}
 
-	func convertDataToDictionary(with data:Data?)->NSDictionary{
-		do { // try to parse JSON and deal with errors using do/catch block
-			let jsonDictionary: NSDictionary =
-				try JSONSerialization.jsonObject(with: data!,
-												 options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-			
-			return jsonDictionary
-			
+	func jsonDecode(data: Data) -> JSONDictionary? {
+		do {
+			let dictionary: [String: Any]? = try JSONSerialization.jsonObject(
+				with: data,
+				options: .mutableContainers
+			) as? JSONDictionary
+			return dictionary
 		} catch {
 			print("json error: \(error.localizedDescription)")
-			return NSDictionary() // just return empty
+			return nil
 		}
 	}
 }
