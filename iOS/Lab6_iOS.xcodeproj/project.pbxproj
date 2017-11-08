@@ -12,7 +12,6 @@
 		E286C5771FB37ECA00A11B15 /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286C5761FB37ECA00A11B15 /* TrainViewController.swift */; };
 		E286C57A1FB37ECA00A11B15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E286C5781FB37ECA00A11B15 /* Main.storyboard */; };
 		E286C57C1FB37ECA00A11B15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E286C57B1FB37ECA00A11B15 /* Assets.xcassets */; };
-		E286C5871FB3825900A11B15 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286C5861FB3825900A11B15 /* RingBuffer.swift */; };
 		E286C58D1FB38A0F00A11B15 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286C58C1FB38A0F00A11B15 /* API.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,6 @@
 		E286C5791FB37ECA00A11B15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E286C57B1FB37ECA00A11B15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E286C5801FB37ECA00A11B15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E286C5861FB3825900A11B15 /* RingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
 		E286C58B1FB3834E00A11B15 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "/Users/justinwilson/Desktop/CSE 7323 Sensing/Assignments/Lab 6/iOS/Lab6_iOS/LaunchScreen.storyboard"; sourceTree = "<absolute>"; };
 		E286C58C1FB38A0F00A11B15 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,7 +79,6 @@
 		E286C5731FB37ECA00A11B15 /* Lab6_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				E286C5861FB3825900A11B15 /* RingBuffer.swift */,
 				E286C5741FB37ECA00A11B15 /* AppDelegate.swift */,
 				E286C5761FB37ECA00A11B15 /* TrainViewController.swift */,
 				E286C5781FB37ECA00A11B15 /* Main.storyboard */,
@@ -224,7 +221,6 @@
 				E286C5771FB37ECA00A11B15 /* TrainViewController.swift in Sources */,
 				E286C5751FB37ECA00A11B15 /* AppDelegate.swift in Sources */,
 				E286C58D1FB38A0F00A11B15 /* API.swift in Sources */,
-				E286C5871FB3825900A11B15 /* RingBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
