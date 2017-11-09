@@ -15,6 +15,12 @@ import pickle
 from bson.binary import Binary
 import json
 import numpy as np
+from PIL import Image
+
+def base64ToImageArray(base64):
+	#base64 to binary
+	#load binary into pillow aka pil.image, look at image processing lab from paul
+	#Convert into grayscale matrix numpy array wiht vlaue from 0 to 255
 
 class PrintHandlers(BaseHandler):
     def get(self):
@@ -30,19 +36,18 @@ class UploadLabeledDatapointHandler(BaseHandler):
         '''
         data = json.loads(self.request.body.decode("utf-8"))
 
-        vals = data['feature']
-        fvals = [float(val) for val in vals]
+        base64 = data['image']
+        #get numpy matrix
         label = data['label']
-        sess  = data['dsid']
 
-        dbid = self.db.labeledinstances.insert(
-            {"feature":fvals,"label":label,"dsid":sess}
-            );
-        self.write_json({"id":str(dbid),
-            "feature":[str(len(fvals))+" Points Received",
-                    "min of: " +str(min(fvals)),
-                    "max of: " +str(max(fvals))],
-            "label":label})
+        # dbid = self.db.labeledinstances.insert(
+        #     {"feature":fvals,"label":label,"dsid":sess}
+        #     );
+        # self.write_json({"id":str(dbid),
+        #     "feature":[str(len(fvals))+" Points Received",
+        #             "min of: " +str(min(fvals)),
+        #             "max of: " +str(max(fvals))],
+        #     "label":label})
 
 class RequestNewDatasetId(BaseHandler):
     def get(self):

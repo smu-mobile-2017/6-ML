@@ -13,6 +13,7 @@ numpy = "*"
 scipy = "*"
 pymongo = "*"
 sklearn = "*"
+pillow = "*"
 
 
 [dev-packages]
