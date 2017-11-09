@@ -18,15 +18,17 @@ from bson.binary import Binary
 import json
 import numpy as np
 from PIL import Image
+from StringIO import StringIO
 
 # The PIL flag for grayscale.
 GRAYSCALE_MODE = 'L'
 
 def base64ToImageArray(base64_image):
 	#binary_image = base64.decodestring(base64) #base64 to binary
-	binary_image = base64.standard_b64decode(base64_image)
-	image = Image.open(io.BytesIO(binary_image)).convert(mode=GRAYSCALE_MODE) #load from binary
-	image.save("testImage", "JPEG")
+	binary_image = base64.b64decode(base64_image)
+	image = Image.open(io.BytesIO(binary_image))#.convert(mode=GRAYSCALE_MODE) #load from binary
+	# image.save("testImage", "JPEG")
+	image.save("testImage", "PNG")
 	data = np.asarray(image.getdata()) #convert to numpy array
 	print(data)
 	return data
