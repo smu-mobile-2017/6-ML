@@ -80,8 +80,12 @@ class DrawView: UIView {
 		}
 	}
 	
-	@IBAction private func didPressClearButton(_ sender: Any) {
+	func erase() {
 		touchDrawView.clearDrawing()
+	}
+	
+	@IBAction private func didPressClearButton(_ sender: Any) {
+		erase()
 	}
 	
 	@IBAction private func didPressSendButton(_ sender: Any) {

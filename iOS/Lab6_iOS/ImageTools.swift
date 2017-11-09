@@ -34,10 +34,10 @@ class ImageTools {
 		let width = Int(CGFloat(cg.width) * scaleFactor.width)
 		let height = Int(CGFloat(cg.height) * scaleFactor.height)
 		
-		return scale(image: image, toExactly: (width,height))
+		return resize(image: image, to: (width,height))
 	}
 	
-	static func scale(image: UIImage, toExactly size: (width: Int, height: Int)) -> UIImage? {
+	static func resize(image: UIImage, to size: (width: Int, height: Int)) -> UIImage? {
 		guard let cg = image.cgImage else {
 			print("[ImageTools.scale(image:toExactly:)] failed to get CGImage.")
 			return nil
@@ -59,6 +59,63 @@ class ImageTools {
 		ctx.interpolationQuality = .high
 		let size = CGSize(width: size.width, height: size.height)
 		ctx.draw(cg, in: CGRect(origin: .zero, size: size))
+		
+		return ctx.makeImage().flatMap { UIImage(cgImage: $0) }
+	}
+	
+	static func convertAlpha(image: UIImage, toMatte matte: UIColor) -> UIImage? {
+		guard let cg = image.cgImage else {
+			print("[ImageTools.scale(image:toExactly:)] failed to get CGImage.")
+			return nil
+		}
+		
+		guard let ctx = CGContext(
+			data: nil,
+			width: cg.width,
+			height: cg.height,
+			bitsPerComponent: cg.bitsPerComponent,
+			bytesPerRow: cg.bytesPerRow,
+			space: cg.colorSpace!,
+			bitmapInfo: cg.bitmapInfo.rawValue
+		) else {
+			print("[ImageTools.scale(image:toExactly:)] could not initialize CGContext.")
+			return nil
+		}
+		
+		ctx.interpolationQuality = .high
+		let size = CGSize(width: cg.width, height: cg.height)
+		let sizeRect = CGRect(origin: .zero, size: size)
+		
+		ctx.setFillColor(matte.cgColor)
+		ctx.fill(sizeRect)
+		ctx.draw(cg, in: sizeRect)
+		
+		return ctx.makeImage().flatMap { UIImage(cgImage: $0) }
+	}
+	
+	static func convertToGrayscale(image: UIImage) -> UIImage? {
+		guard let cg = image.cgImage else {
+			print("[ImageTools.convertToGrayscale(image:)] failed to get CGImage.")
+			return nil
+		}
+		
+		let rect = CGRect(origin: .zero, size: CGSize(width: cg.width, height: cg.height))
+		let grayscale = CGColorSpace(name: CGColorSpace.linearGray)!
+		
+		guard let ctx = CGContext(
+			data: nil,
+			width: cg.width,
+			height: cg.height,
+			bitsPerComponent: 8,
+			bytesPerRow: 0,
+			space: grayscale,
+			bitmapInfo: CGImageAlphaInfo.none.rawValue
+		) else {
+			print("[ImageTools.scale(image:toExactly:)] could not initialize CGContext.")
+			return nil
+		}
+		
+		ctx.draw(cg, in: rect)
 		
 		return ctx.makeImage().flatMap { UIImage(cgImage: $0) }
 	}
