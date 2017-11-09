@@ -55,7 +55,7 @@ class UploadLabeledDatapointHandler(BaseHandler):
         self.write_json({"id":str(dbid), 
          	"feature":[str(image_np.size) + "Grey scale pixels received", 
          		"min of: " + str(image_np.min()), 
-         		"max of: " + str(inage_np.max())] 
+         		"max of: " + str(inage_np.max())], 
              "label":label})
 
 class RequestNewDatasetId(BaseHandler):
