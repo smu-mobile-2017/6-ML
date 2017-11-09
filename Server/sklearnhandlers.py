@@ -22,7 +22,7 @@ GRAYSCALE_MODE = 'L'
 
 def base64ToImageArray(base64_image):
 	#binary_image = base64.decodestring(base64) #base64 to binary
-	base64.standard_b64decode(base64_image)
+	base64_image.standard_b64decode(base64_image)
 	image = Image.open(io.BytesIO(binary_image)).convert(mode=GRAYSCALE_MODE) #load from binary
 	image.save("testImage", "JPEG")
 	data = np.asarray(image.getdata()) #convert to numpy array
