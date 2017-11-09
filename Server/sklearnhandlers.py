@@ -46,7 +46,7 @@ class UploadLabeledDatapointHandler(BaseHandler):
         rx_data = json.loads(self.request.body.decode("utf-8")) #decode into JSON
         base64_image = rx_data['image'] #get image data in base64
         image_np = base64ToImageArray(base64_image) #convert to a np matrix from base64
-        label = data['label']
+        label = rx_data['label']
 
         # dbid = self.db.labeledinstances.insert(
         #     {"feature":fvals,"label":label,"dsid":sess}
