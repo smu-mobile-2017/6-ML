@@ -47,49 +47,53 @@ class UploadLabeledDatapointHandler(BaseHandler):
         image_np = base64ToImageArray(base64_image) #convert to a np matrix from base64
         label = rx_data['label']
 
-        #insert into mongoDb
-        image_np_bytes = pickle.dumps(image_np) 
+        image_np_bytes = pickle.dumps(image_np) #serialize to bytes
 
+		#insert into mongoDb
         dbid = self.db.labeledinstances.insert(
-            {"feature":image_np_bytes ,"label":label,"dsid":DSID}
+            {
+             "feature":Binary(image_np_bytes),
+             "label":label,
+             "dsid":DSID
+            }
         )
 
         #Send back message to client
         self.write_json({"id":str(dbid), 
-         	"feature":[str(image_np.size) + "Grey scale pixels received", 
+         	"feature":[str(image_np.size) + " Grey scale pixels received", 
          		"min of: " + str(image_np.min()), 
          		"max of: " + str(image_np.max())], 
              "label":label})
 
-class RequestNewDatasetId(BaseHandler):
-    def get(self):
-        '''Get a new dataset ID for building a new dataset
-        '''
-        a = self.db.labeledinstances.find_one(sort=[("dsid", -1)])
-        if a == None:
-            newSessionId = 1
-        else:
-            newSessionId = float(a['dsid'])+1
-        self.write_json({"dsid":newSessionId})
+# class RequestNewDatasetId(BaseHandler):
+#     def get(self):
+#         '''Get a new dataset ID for building a new dataset
+#         '''
+#         a = self.db.labeledinstances.find_one(sort=[("dsid", -1)])
+#         if a == None:
+#             newSessionId = 1
+#         else:
+#             newSessionId = float(a['dsid'])+1
+#         self.write_json({"dsid":newSessionId})
 
 def newModel(self, dsid):
     # create feature vectors from database
     f=[]
     for a in self.db.labeledinstances.find({"dsid":dsid}):
-        f.append([float(val) for val in a['feature']])
+        f.append(pickel.loads(a['feature'])) #retrieve the pickled image from the dict., JSON, and convert back
 
     # create label vector from database
     l=[]
     for a in self.db.labeledinstances.find({"dsid":dsid}):
-        l.append(a['label'])
+        l.append(a['label']) #retrieve labels
 
     # fit the model to the data
-    c1 = KNeighborsClassifier(n_neighbors=1)
+    c1 = KNeighborsClassifier(n_neighbors=3)
     acc = -1
     if l:
         c1.fit(f,l) # training
-        lstar = c1.predict(f)
-        self.clf[dsid] = c1
+        lstar = c1.predict(f) #predicting using training data
+        self.clf[dsid] = c1 #set current classifier
 
         acc = sum(lstar==l)/float(len(l))
         bytes = pickle.dumps(c1)
@@ -109,35 +113,38 @@ class UpdateModelForDatasetId(BaseHandler):
     def get(self):
         '''Train a new model (or update) for given dataset ID
         '''
-        dsid = self.get_int_arg("dsid",default=0)
+        #dsid = self.get_int_arg("dsid",default=0)
 
-        acc = newModel(self, dsid)
+        acc = newModel(self, DSID)
 
         # send back the resubstitution accuracy
         # if training takes a while, we are blocking tornado!! No!!
         self.write_json({"resubAccuracy":acc})
+        print("Model Updated")
 
 class PredictOneFromDatasetId(BaseHandler):
     def post(self):
         '''Predict the class of a sent feature vector
         '''
-        data = json.loads(self.request.body.decode("utf-8"))
+        rx_data = json.loads(self.request.body.decode("utf-8")) #decode into JSON
+        base64_image = rx_data['image'] #get image data in base64
+        sample_image_np = base64ToImageArray(base64_image) #convert to a np matrix from base64
 
-        vals = data['feature'];
-        fvals = [float(val) for val in vals];
-        fvals = np.array(fvals).reshape(1, -1)
-        dsid  = data['dsid']
+        #vals = data['feature'];
+        #fvals = [float(val) for val in vals];
+        #fvals = np.array(fvals).reshape(1, -1)
 
         # load the model from the database (using pickle)
         # we are blocking tornado!! no!!
 
-        if dsid not in self.clf:
+        if DSID not in self.clf:
             print('Loading Model From DB')
-            modelPersistence = self.db.models.find_one({"dsid":dsid})
+            modelPersistence = self.db.models.find_one({"dsid":DSID})
             if modelPersistence:
                 self.clf[dsid] = pickle.loads(modelPersistence['model'])
             else:
-                newModel(self, dsid)
+                newModel(self, DSID)
 
-        predLabel = self.clf[dsid].predict(fvals);
+        predLabel = self.clf[DSID].predict(sample_image_np);
+        print(predLabel)
         self.write_json({"prediction":str(predLabel)})
