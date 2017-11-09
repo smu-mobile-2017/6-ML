@@ -12,7 +12,7 @@ from basehandler import BaseHandler
 
 from sklearn.neighbors import KNeighborsClassifier
 import pickle
-impoer base64
+import base64
 from bson.binary import Binary
 import json
 import numpy as np
