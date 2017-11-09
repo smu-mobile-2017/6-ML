@@ -52,7 +52,7 @@ class UploadLabeledDatapointHandler(BaseHandler):
         )
 
         #Send back message to client
-         self.write_json({"id":str(dbid), 
+        self.write_json({"id":str(dbid), 
          	"feature":[str(image_np.size) + "Grey scale pixels received", 
          		"min of: " + str(image_np.min()), 
          		"max of: " + str(inage_np.max())] 
