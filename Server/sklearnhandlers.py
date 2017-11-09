@@ -13,6 +13,7 @@ from basehandler import BaseHandler
 from sklearn.neighbors import KNeighborsClassifier
 import pickle
 import base64
+import io
 from bson.binary import Binary
 import json
 import numpy as np
