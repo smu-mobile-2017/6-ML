@@ -80,7 +80,7 @@ def newModel(self, dsid):
     # create feature vectors from database
     f=[]
     for a in self.db.labeledinstances.find({"dsid":dsid}):
-        f.append(pickel.loads(a['feature'])) #retrieve the pickled image from the dict., JSON, and convert back
+        f.append(pickle.loads(a['feature'])) #retrieve the pickled image from the dict., JSON, and convert back
 
     # create label vector from database
     l=[]
