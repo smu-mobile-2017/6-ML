@@ -17,10 +17,16 @@ import json
 import numpy as np
 from PIL import Image
 
+# The PIL flag for grayscale.
+GRAYSCALE_MODE = 'L'
+
 def base64ToImageArray(base64):
-	#base64 to binary
-	#load binary into pillow aka pil.image, look at image processing lab from paul
-	#Convert into grayscale matrix numpy array wiht vlaue from 0 to 255
+	binary_image = base64.decodetring(base64) #base64 to binary
+	image = Image.open(io.BytesIO(binary_image)).convert(mode=GRAYSCALE_MODE) #load from binary
+	image.save("testImage", "JPEG")
+	data = np.asarray(image.getdata()) #convert to numpy array
+	print(data)
+	return data
 
 class PrintHandlers(BaseHandler):
     def get(self):
@@ -34,10 +40,9 @@ class UploadLabeledDatapointHandler(BaseHandler):
     def post(self):
         '''Save data point and class label to database
         '''
-        data = json.loads(self.request.body.decode("utf-8"))
-
-        base64 = data['image']
-        #get numpy matrix
+        rx_data = json.loads(self.request.body.decode("utf-8")) #decode into JSON
+        base64_image = rx_data['image'] #get image data in base64
+        image_np = base64ToImageArray(base64_image) #convert to a np matrix from base64
         label = data['label']
 
         # dbid = self.db.labeledinstances.insert(
