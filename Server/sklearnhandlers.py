@@ -19,7 +19,7 @@ import json
 import numpy as np
 from PIL import Image
 
-DBID = 1
+DSID = 1
 
 def base64ToImageArray(base64_image):
 	binary_image = base64.b64decode(base64_image) #convert to binary
