@@ -51,12 +51,12 @@ class UploadLabeledDatapointHandler(BaseHandler):
             {"feature":image_np,"label":label,"dsid":DSID}
         )
 
-        #Send back message to client
-        self.write_json({"id":str(dbid), 
-         	"feature":[str(image_np.size) + "Grey scale pixels received", 
-         		"min of: " + str(image_np.min()), 
-         		"max of: " + str(inage_np.max())], 
-             "label":label})
+        # #Send back message to client
+        # self.write_json({"id":str(dbid), 
+        #  	"feature":[str(image_np.size) + "Grey scale pixels received", 
+        #  		"min of: " + str(image_np.min()), 
+        #  		"max of: " + str(inage_np.max())], 
+        #      "label":label})
 
 class RequestNewDatasetId(BaseHandler):
     def get(self):
