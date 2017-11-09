@@ -19,17 +19,14 @@ import json
 import numpy as np
 from PIL import Image
 
-# The PIL flag for grayscale.
-GRAYSCALE_MODE = 'L'
+DBID = 1
 
 def base64ToImageArray(base64_image):
-	#binary_image = base64.decodestring(base64) #base64 to binary
-	binary_image = base64.b64decode(base64_image)
-	image = Image.open(io.BytesIO(binary_image))#.convert(mode=GRAYSCALE_MODE) #load from binary
-	# image.save("testImage", "JPEG")
-	image.save("testImage", "PNG")
+	binary_image = base64.b64decode(base64_image) #convert to binary
+	image = Image.open(io.BytesIO(binary_image)) #load from binary
+	#image.save("testImage", "PNG") #debug save image
 	data = np.asarray(image.getdata()) #convert to numpy array
-	print(data)
+	#print(data) #debug print numoy array of image
 	return data
 
 class PrintHandlers(BaseHandler):
@@ -49,14 +46,17 @@ class UploadLabeledDatapointHandler(BaseHandler):
         image_np = base64ToImageArray(base64_image) #convert to a np matrix from base64
         label = rx_data['label']
 
-        # dbid = self.db.labeledinstances.insert(
-        #     {"feature":fvals,"label":label,"dsid":sess}
-        #     );
-        # self.write_json({"id":str(dbid),
-        #     "feature":[str(len(fvals))+" Points Received",
-        #             "min of: " +str(min(fvals)),
-        #             "max of: " +str(max(fvals))],
-        #     "label":label})
+        #insert into mongoDb
+        dbid = self.db.labeledinstances.insert(
+            {"feature":image_np,"label":label,"dsid":DSID}
+        )
+
+        #Send back message to client
+         self.write_json({"id":str(dbid), 
+         	"feature":[str(image_np.size) + "Grey scale pixels received", 
+         		"min of: " + str(image_np.min()), 
+         		"max of: " + str(inage_np.max())] 
+             "label":label})
 
 class RequestNewDatasetId(BaseHandler):
     def get(self):

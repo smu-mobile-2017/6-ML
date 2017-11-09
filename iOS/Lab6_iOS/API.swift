@@ -60,7 +60,7 @@ class API: NSObject, URLSessionDelegate {
 		newImage = ImageTools.convertAlpha(image: newImage!, toMatte: .white)
 		newImage = ImageTools.convertToGrayscale(image: newImage!)
 		
-		return UIImagePNGRepresentation(image)
+		return UIImagePNGRepresentation(newImage!)
 	}
 
 	func send(image: UIImage, withLabel label: NumberLabel) {
