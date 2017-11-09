@@ -18,7 +18,6 @@ from bson.binary import Binary
 import json
 import numpy as np
 from PIL import Image
-from StringIO import StringIO
 
 # The PIL flag for grayscale.
 GRAYSCALE_MODE = 'L'
