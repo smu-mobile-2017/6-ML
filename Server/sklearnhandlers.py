@@ -16,6 +16,7 @@ import base64
 import io
 from bson.binary import Binary
 import json
+import pickle
 import numpy as np
 from PIL import Image
 
@@ -47,16 +48,18 @@ class UploadLabeledDatapointHandler(BaseHandler):
         label = rx_data['label']
 
         #insert into mongoDb
+        image_np_bytes = pickle.dumps(image_np) 
+
         dbid = self.db.labeledinstances.insert(
-            {"feature":image_np,"label":label,"dsid":DSID}
+            {"feature":image_np_bytes ,"label":label,"dsid":DSID}
         )
 
-        # #Send back message to client
-        # self.write_json({"id":str(dbid), 
-        #  	"feature":[str(image_np.size) + "Grey scale pixels received", 
-        #  		"min of: " + str(image_np.min()), 
-        #  		"max of: " + str(inage_np.max())], 
-        #      "label":label})
+        #Send back message to client
+        self.write_json({"id":str(dbid), 
+         	"feature":[str(image_np.size) + "Grey scale pixels received", 
+         		"min of: " + str(image_np.min()), 
+         		"max of: " + str(inage_np.max())], 
+             "label":label})
 
 class RequestNewDatasetId(BaseHandler):
     def get(self):
