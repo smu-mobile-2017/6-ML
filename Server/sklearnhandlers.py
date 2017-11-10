@@ -91,7 +91,7 @@ def newModel(self, dsid):
         l.append(a['label']) #retrieve labels
 
     #fit the model to the data
-    print(self.clf_type)
+    #print(self.clf_type) #debug message
     if self.clf_type == 'KNN':
         c1 = KNeighborsClassifier(n_neighbors=3)
     else:
@@ -125,7 +125,7 @@ class UpdateModelForDatasetId(BaseHandler):
         # send back the resubstitution accuracy
         # if training takes a while, we are blocking tornado!! No!!
         self.write_json({"resubAccuracy":acc})
-        print("Model Updated")
+        print("Model Updated, type " + self.clf_type)
 
 class PredictOneFromDatasetId(BaseHandler):
     def post(self):
@@ -151,5 +151,5 @@ class PredictOneFromDatasetId(BaseHandler):
 
         predictionArray = self.clf[self.clf_type].predict(sample_image_np)
         predLabel = int(predictionArray[0])
-        print(predLabel)
+        print(predLabel + ", model " + self.clf_type)
         self.write_json({"prediction":predLabel})
