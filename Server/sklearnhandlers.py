@@ -96,7 +96,7 @@ def newModel(self, dsid):
     if self.clf_type == 'KNN':
         c1 = KNeighborsClassifier(n_neighbors=3)
     else:
-        c1 = SGDClassifier()
+        c1 = SGDClassifier(loss='log')
     acc = -1
     if l:
         c1.fit(f,l) # training
