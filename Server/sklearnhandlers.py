@@ -90,7 +90,7 @@ def newModel(self, dsid):
     for a in self.db.labeledinstances.find({"dsid":dsid}):
         l.append(a['label']) #retrieve labels
 
-    #fit the model to the data
+    #fit the model to the data 
     #print(self.clf_type) #debug message
     if self.clf_type == 'KNN':
         c1 = KNeighborsClassifier(n_neighbors=3)
@@ -122,7 +122,6 @@ class UpdateModelForDatasetId(BaseHandler):
         '''
 
         self.clf_type = self.get_string_arg("classifier")
-        print(self.clf_type)
         acc = newModel(self, DSID)
 
         # send back the resubstitution accuracy

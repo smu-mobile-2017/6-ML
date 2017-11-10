@@ -113,7 +113,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_string_arg(self, name, default=[], strip=True):
         '''Convenience method for grabbing long integer arguments
            from HTTP headers. Will raise an HTTPdserror if
-           argument is missing 
+           argument is missing  
         '''
         try:
             arg = self.get_argument(name, default, strip)
