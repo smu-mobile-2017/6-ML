@@ -1,2 +1,0 @@
-Fatal Python error: PyThreadState_Get: no current thread
-[1]    29249 abort      python2 coreml_export.py
