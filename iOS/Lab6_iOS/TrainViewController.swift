@@ -42,4 +42,6 @@ extension TrainViewController: DrawViewDelegate {
 		drawView.erase()
 		setNextNumberClass()
 	}
+	
+	func didPressEraseButton(_ drawView: DrawView) {}
 }

@@ -11,6 +11,7 @@
 		27508D7A1FB3C0D5001B6519 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27508D791FB3C0D5001B6519 /* TestViewController.swift */; };
 		2775A2CF1FB3B3C800AE2AAC /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2775A2CE1FB3B3C700AE2AAC /* DrawView.swift */; };
 		27778AE91FB3903F00D4C52C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27778AE71FB3903F00D4C52C /* LaunchScreen.storyboard */; };
+		27DCE5CA1FB5330D00727B04 /* UIView+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DCE5C91FB5330D00727B04 /* UIView+Edges.swift */; };
 		27F25C821FB3B14100E0F658 /* DrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27F25C7E1FB3B14100E0F658 /* DrawView.xib */; };
 		27F25C831FB3B14100E0F658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27F25C801FB3B14100E0F658 /* Main.storyboard */; };
 		945A9E9837EFB0DE9307D3EC /* Pods_Lab6_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B49D7D56985689BF855BC /* Pods_Lab6_iOS.framework */; };
@@ -25,6 +26,7 @@
 		27508D791FB3C0D5001B6519 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		2775A2CE1FB3B3C700AE2AAC /* DrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		27778AE81FB3903F00D4C52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		27DCE5C91FB5330D00727B04 /* UIView+Edges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Edges.swift"; sourceTree = "<group>"; };
 		27F25C7F1FB3B14100E0F658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DrawView.xib; sourceTree = "<group>"; };
 		27F25C811FB3B14100E0F658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		32688EB7A6F55DA17F3AB538 /* Pods-Lab6_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lab6_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lab6_iOS/Pods-Lab6_iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				E286C58C1FB38A0F00A11B15 /* API.swift */,
 				27508D731FB3B968001B6519 /* ImageTools.swift */,
 				27508D791FB3C0D5001B6519 /* TestViewController.swift */,
+				27DCE5C91FB5330D00727B04 /* UIView+Edges.swift */,
 				27F25C801FB3B14100E0F658 /* Main.storyboard */,
 				27778AE71FB3903F00D4C52C /* LaunchScreen.storyboard */,
 				27F25C861FB3B2DA00E0F658 /* DrawView */,
@@ -242,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E286C5751FB37ECA00A11B15 /* AppDelegate.swift in Sources */,
+				27DCE5CA1FB5330D00727B04 /* UIView+Edges.swift in Sources */,
 				E286C58D1FB38A0F00A11B15 /* API.swift in Sources */,
 				2775A2CF1FB3B3C800AE2AAC /* DrawView.swift in Sources */,
 				27508D7A1FB3C0D5001B6519 /* TestViewController.swift in Sources */,

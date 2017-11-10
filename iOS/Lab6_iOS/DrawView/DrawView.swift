@@ -11,6 +11,7 @@ import TouchDraw
 
 protocol DrawViewDelegate {
 	func didPressSendButton(_ drawView: DrawView)
+	func didPressEraseButton(_ drawView: DrawView)
 }
 
 enum DrawViewStyle {
@@ -62,8 +63,9 @@ class DrawView: UIView {
 	private func loadContentView() {
 		Bundle.main.loadNibNamed("DrawView", owner: self, options: nil)
 		addSubview(contentView)
-		contentView.frame = self.bounds
-		contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+		
+		contentView.translatesAutoresizingMaskIntoConstraints = false
+		contentView.constrainEdgesToSuperview()
 		
 		setStyle(.normal)
 		labelText = nil
@@ -86,6 +88,7 @@ class DrawView: UIView {
 	
 	@IBAction private func didPressClearButton(_ sender: Any) {
 		erase()
+		delegate?.didPressEraseButton(self)
 	}
 	
 	@IBAction private func didPressSendButton(_ sender: Any) {

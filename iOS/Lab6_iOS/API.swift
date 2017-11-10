@@ -24,6 +24,11 @@ enum NumberLabel: Int {
 	}
 }
 
+public enum APIClassifier: String {
+	case kNearestNeighbors = "KNN"
+	case supportVectorMachine = "SVM"
+}
+
 class API: NSObject, URLSessionDelegate {
 	
 	static let shared = API()
@@ -64,6 +69,8 @@ class API: NSObject, URLSessionDelegate {
 	}
 
 	func send(image: UIImage, withLabel label: NumberLabel) {
+		
+		print("send(image: ..., withLabel: \(label.rawValue))")
 		
 		// Resize, matte, and grayscale the image
 		// then convert to PNG data
@@ -108,7 +115,9 @@ class API: NSObject, URLSessionDelegate {
 		task.resume()
 	}
 
-	func classify(image: UIImage) -> NumberLabel? {
+	func classify(image: UIImage, usingClassifier classifier: APIClassifier) -> NumberLabel? {
+		
+		print("classify(image: ..., usingClassifier: \(classifier.rawValue))")
 		
 		let url = URL(string: "\(API.serverURL)/PredictOne")
 		var request = URLRequest(url: url!)
@@ -122,8 +131,9 @@ class API: NSObject, URLSessionDelegate {
 		let base64 = imageData.base64EncodedString()
 		
 		// data to send in body of post request (send arguments as json)
-		let submission = [
-			"image": base64
+		let submission: JSONDictionary = [
+			"image": base64,
+			"classifier": classifier.rawValue
 		]
 		
 		guard let body = jsonEncode(dictionary: submission) else {
