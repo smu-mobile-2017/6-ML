@@ -11,7 +11,8 @@ from tornado.options import define, options
 from basehandler import BaseHandler
 
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn import svm
+#from sklearn import svm
+from sklearn.linear_model.SGDClassifier
 import pickle
 import base64
 import io
@@ -95,7 +96,7 @@ def newModel(self, dsid):
     if self.clf_type == 'KNN':
         c1 = KNeighborsClassifier(n_neighbors=3)
     else:
-        c1 = svm.SVC(C = 200, kernel = 'rbf', gamma = 0.01, cache_size=8000, probability=False)
+        c1 = SGDClassifier()
     acc = -1
     if l:
         c1.fit(f,l) # training
