@@ -21,7 +21,7 @@ import pickle
 import numpy as np
 from PIL import Image
 
-DSID = 1
+DSID = 1 #constant database id for samples, multiple sets could be used later
 
 def base64ToImageArray(base64_image):
 	binary_image = base64.b64decode(base64_image) #convert to binary
@@ -66,6 +66,8 @@ class UploadLabeledDatapointHandler(BaseHandler):
          		"max of: " + str(image_np.max())], 
              "label":label})
 
+''' Keep this incase we need to use this on the projet 
+'''
 # class RequestNewDatasetId(BaseHandler):
 #     def get(self):
 #         '''Get a new dataset ID for building a new dataset
@@ -89,8 +91,8 @@ def newModel(self, dsid):
         l.append(a['label']) #retrieve labels
 
     #fit the model to the data
-    print(self.application.clf_type)
-    if self.application.clf_type == 'KNN':
+    print(self.clf_type)
+    if self.clf_type == 'KNN':
         c1 = KNeighborsClassifier(n_neighbors=3)
     else:
         c1 = svm.SVC()
@@ -98,13 +100,13 @@ def newModel(self, dsid):
     if l:
         c1.fit(f,l) # training
         lstar = c1.predict(f) #predicting using training data
-        self.clf[dsid] = c1 #set current classifier
+        self.clf[self.clf_type] = c1 #set current classifier for clf_type
 
         acc = sum(lstar==l)/float(len(l))
         bytes = pickle.dumps(c1)
 
         self.db.models.update(
-            {"type": self.application.clf_type},
+            {"type": self.clf_type},
             {"$set":
                 {
                     "model": Binary(bytes)
@@ -118,8 +120,6 @@ class UpdateModelForDatasetId(BaseHandler):
     def get(self):
         '''Train a new model (or update) for given dataset ID
         '''
-        #dsid = self.get_int_arg("dsid",default=0)
-
         acc = newModel(self, DSID)
 
         # send back the resubstitution accuracy
@@ -133,28 +133,22 @@ class PredictOneFromDatasetId(BaseHandler):
         '''
         rx_data = json.loads(self.request.body.decode("utf-8")) #decode into JSON
         base64_image = rx_data['image'] #get image data in base64
-        model_selection = rx_data['classifier']
         sample_image_np = base64ToImageArray(base64_image) #convert to a np matrix from base64
 
-        #vals = data['feature'];
-        #fvals = [float(val) for val in vals];
-        sample_image_np = np.array(sample_image_np).reshape(1, -1)
+        self.clf_type = rx_data['classifier'] #string flag for the model the user wants to use
+        sample_image_np = np.array(sample_image_np).reshape(1, -1) #reshape the array
 
-        # load the model from the database (using pickle)
+        # if model does not exist load the model from the database or build new model
         # we are blocking tornado!! no!!
-
-        if DSID not in self.clf:
+        if self.clf_type not in self.clf:
             print('Loading Model From DB')
-            modelPersistence = self.db.models.find_one({"type":self.application.clf_type})
+            modelPersistence = self.db.models.find_one({"type":self.clf_type})
             if modelPersistence:
-                self.clf[DSID] = pickle.loads(modelPersistence['model'])
+                self.clf[self.clf_type] = pickle.loads(modelPersistence['model'])
             else:
                 newModel(self, DSID)
-        elif model_selection != self.application.clf_type:
-            self.application.cls_type = model_selection
-            newModel(self, DSID)
-            
-        predictionArray = self.clf[DSID].predict(sample_image_np)
+
+        predictionArray = self.clf[self.clf_type].predict(sample_image_np)
         predLabel = int(predictionArray[0])
         print(predLabel)
         self.write_json({"prediction":predLabel})
