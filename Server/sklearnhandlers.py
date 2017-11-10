@@ -89,6 +89,7 @@ def newModel(self, dsid):
         l.append(a['label']) #retrieve labels
 
     # fit the model to the data
+    print(self.application.clf_type)
     if self.application.clf_type == 'KNN':
         c1 = KNeighborsClassifier(n_neighbors=3)
     else:
