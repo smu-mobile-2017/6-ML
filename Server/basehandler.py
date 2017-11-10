@@ -115,13 +115,12 @@ class BaseHandler(tornado.web.RequestHandler):
            from HTTP headers. Will raise an HTTP error if
            argument is missing 
         '''
-        print('test')
-        # try:
-        #     arg = self.get_argument(name, default, strip)
-        #     return 'KNN' if arg == default else string(arg)
-        # except ValueError:
-        #     e = "%s could not be read as a string" % value
-        #     raise HTTPJSONError(1, e)
+        try:
+            arg = self.get_argument(name, default, strip)
+            return 'KNN' if arg == default else string(arg)
+        except ValueError:
+            e = "%s could not be read as a string" % value
+            raise HTTPJSONError(1, e)
 
     def write_json(self, value={}):
         '''Completes header and writes JSONified 
