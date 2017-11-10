@@ -117,7 +117,8 @@ class BaseHandler(tornado.web.RequestHandler):
         '''
         try:
             arg = self.get_argument(name, default, strip)
-            return 'KNN' if arg == default else string(arg)
+            print(arg)
+            return default if arg == default else string(arg)
         except ValueError:
             e = "%s could not be read as a string" % value
             raise HTTPJSONError(1, e)
