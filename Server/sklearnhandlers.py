@@ -121,7 +121,7 @@ class UpdateModelForDatasetId(BaseHandler):
         '''Train a new model (or update) for given dataset ID
         '''
 
-        self.clf_type = self.get_string_arg(self, "classifier", "KNN")
+        self.clf_type = self.get_string_arg("classifier", "KNN")
         print(self.clf_type)
         acc = newModel(self, DSID)
 
