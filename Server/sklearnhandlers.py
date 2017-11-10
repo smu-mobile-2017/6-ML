@@ -95,7 +95,7 @@ def newModel(self, dsid):
     if self.clf_type == 'KNN':
         c1 = KNeighborsClassifier(n_neighbors=3)
     else:
-        c1 = svm.SVC()
+        c1 = svm.SVC(C = 200, kernel = 'rbf', gamma = 0.01, cache_size=8000, probability=false)
     acc = -1
     if l:
         c1.fit(f,l) # training
