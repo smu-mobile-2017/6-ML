@@ -90,10 +90,10 @@ def newModel(self, dsid):
 
     # fit the model to the data
     print(self.application.clf_type)
-    if self.application.clf_type == 'KNN':
-        c1 = KNeighborsClassifier(n_neighbors=3)
-    else:
-        c1 = svm.SVC()
+    #if self.application.clf_type == 'KNN':
+    c1 = KNeighborsClassifier(n_neighbors=3)
+    #else:
+        #c1 = svm.SVC()
     acc = -1
     if l:
         c1.fit(f,l) # training
