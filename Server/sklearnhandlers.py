@@ -128,6 +128,7 @@ class PredictOneFromDatasetId(BaseHandler):
         '''
         rx_data = json.loads(self.request.body.decode("utf-8")) #decode into JSON
         base64_image = rx_data['image'] #get image data in base64
+        model_selection = rx_data['classifier']
         sample_image_np = base64ToImageArray(base64_image) #convert to a np matrix from base64
 
         #vals = data['feature'];
@@ -147,4 +148,4 @@ class PredictOneFromDatasetId(BaseHandler):
 
         predLabel = self.clf[DSID].predict(sample_image_np);
         print(predLabel)
-        self.write_json({"prediction":str(predLabel)})
+        self.write_json({"prediction":predLabel})
