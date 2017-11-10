@@ -141,11 +141,12 @@ class PredictOneFromDatasetId(BaseHandler):
         # if model does not exist load the model from the database or build new model
         # we are blocking tornado!! no!!
         if self.clf_type not in self.clf:
-            print('Loading Model From DB')
             modelPersistence = self.db.models.find_one({"type":self.clf_type})
             if modelPersistence:
+                print('Loading model from DB ' + self.clf_type)
                 self.clf[self.clf_type] = pickle.loads(modelPersistence['model'])
             else:
+                print('Building new model, type ' + self.clf_type)
                 newModel(self, DSID)
 
         predictionArray = self.clf[self.clf_type].predict(sample_image_np)
