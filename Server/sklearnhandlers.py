@@ -127,7 +127,7 @@ class UpdateModelForDatasetId(BaseHandler):
         self.clf_type = self.get_string_arg("classifier")
         if(self.clf_type == 'KNN'):
             param = self.get_int_arg('parameter', 5)
-        else
+        else:
             param = self.get_float_arg('parameter', .0001)
 
         acc = newModel(self, DSID, param)
