@@ -51,14 +51,17 @@ class TestViewController: UIViewController {
 extension TestViewController: DrawViewDelegate {
 	func didPressSendButton(_ drawView: DrawView) {
 		let image = drawView.currentImage
-		let label = API.shared.classify(image: image, usingClassifier: currentClassifier)
-		
-		if let label = label {
-			drawView.labelText = "It's probably a \(label.rawValue)"
-		} else {
-			drawView.labelText = "I'm not sure what that is!"
+		API.shared.classify(image: image, usingClassifier: currentClassifier)
+		{ label, error in
+			if error != nil { print(error!) }
+			if let label = label {
+				drawView.labelText = "It's probably a \(label.rawValue)"
+			} else {
+				drawView.labelText = "I'm not sure what that is!"
+			}
 		}
 	}
+	
 	func didPressEraseButton(_ drawView: DrawView) {
 		drawView.labelText = ""
 	}

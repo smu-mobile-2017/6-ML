@@ -29,6 +29,10 @@ public enum APIClassifier: String {
 	case supportVectorMachine = "SVM"
 }
 
+enum APIError: Error {
+	case couldNotInterpretResponse
+}
+
 class API: NSObject, URLSessionDelegate {
 	
 	static let shared = API()
@@ -86,7 +90,7 @@ class API: NSObject, URLSessionDelegate {
 		// data to send in body of post request (send arguments as json)
 		let submission: JSONDictionary = [
 			"image": base64,
-			"label": "\(label)"
+			"label": label.rawValue
 		]
 		
 		guard let body = jsonEncode(dictionary: submission) else {
@@ -115,7 +119,7 @@ class API: NSObject, URLSessionDelegate {
 		task.resume()
 	}
 
-	func classify(image: UIImage, usingClassifier classifier: APIClassifier) -> NumberLabel? {
+	func classify(image: UIImage, usingClassifier classifier: APIClassifier, callback: @escaping (NumberLabel?,Error?) -> ()) {
 		
 		print("classify(image: ..., usingClassifier: \(classifier.rawValue))")
 		
@@ -126,7 +130,7 @@ class API: NSObject, URLSessionDelegate {
 		// then convert to PNG data
 		guard let imageData = prepare(image: image) else {
 			print("Could not prepare image.")
-			return nil
+			return
 		}
 		let base64 = imageData.base64EncodedString()
 		
@@ -138,7 +142,7 @@ class API: NSObject, URLSessionDelegate {
 		
 		guard let body = jsonEncode(dictionary: submission) else {
 			print("[API.getPrediction(_:)] Could not encode data.")
-			return nil
+			return
 		}
 		
 		request.httpMethod = "POST"
@@ -155,14 +159,19 @@ class API: NSObject, URLSessionDelegate {
 				return
 			}
 			
-			let labelResponse = dictionary["prediction"]!
-			print(labelResponse)
+			guard let rawLabel = dictionary["prediction"] as? Int,
+				  let label = NumberLabel(rawValue: rawLabel)
+			else {
+				callback(nil, APIError.couldNotInterpretResponse)
+				print("JSON:\n'''\n\(String(data: data, encoding: .utf8) ?? "(nil)")\n'''")
+				print("Response:\n'''\n\(dictionary)\n'''")
+				return
+			}
+			
+			callback(label, error)
 		}
 		
 		task.resume()
-		
-		print("Warning: classify(features:) is a stub and always returns nil")
-		return nil
 	}
 
 

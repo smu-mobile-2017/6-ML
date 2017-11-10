@@ -27,7 +27,9 @@ class DrawView: UIView {
 			return drawLabel.text
 		}
 		set {
-			drawLabel.text = newValue
+			DispatchQueue.main.async {
+				self.drawLabel.text = newValue
+			}
 		}
 	}
 	
