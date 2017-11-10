@@ -158,7 +158,7 @@ class PredictOneFromDatasetId(BaseHandler):
         #Get passed values if they exist
         if 'parameter' in rx_data:
             param = rx_data['parameter'] #get parameter data
-        print("param" + str(param))
+        print("param " + str(param))
         # if model does not exist load the model from the database or build new model
         # Only use parameter when creating a new model, otherwise use existing model
         # we are blocking tornado!! no!!
