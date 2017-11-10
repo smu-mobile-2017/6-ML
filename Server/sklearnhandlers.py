@@ -141,7 +141,7 @@ class PredictOneFromDatasetId(BaseHandler):
             print('Loading Model From DB')
             modelPersistence = self.db.models.find_one({"dsid":DSID})
             if modelPersistence:
-                self.clf[dsid] = pickle.loads(modelPersistence['model'])
+                self.clf[DSID] = pickle.loads(modelPersistence['model'])
             else:
                 newModel(self, DSID)
 
