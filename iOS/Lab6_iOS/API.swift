@@ -122,7 +122,7 @@ class API: NSObject, URLSessionDelegate {
 		if let param = parameter, !param.isEmpty {
 			urlString += "?parameter=\(param)"
 		}
-		
+		print(urlString)
 		let url = URL(string: urlString)
 		var request = URLRequest(url: url!)
 		

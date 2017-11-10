@@ -66,7 +66,10 @@ class TestViewController: UIViewController {
 			self.accuracyLabel.text = "Accuracy: —"
 		}
 		var labelText = ""
-		API.shared.retrain(usingClassifier: currentClassifier, parameter: self.parameterTextField.text) { accuracy, error in
+		API.shared.retrain(
+			usingClassifier: currentClassifier,
+			parameter: self.parameterTextField.text
+		) { accuracy, error in
 			guard error == nil else {
 				print(error!)
 				return
@@ -90,7 +93,7 @@ class TestViewController: UIViewController {
 extension TestViewController: DrawViewDelegate {
 	func didPressSendButton(_ drawView: DrawView) {
 		let image = drawView.currentImage
-		let param = self.accuracyLabel.text
+		let param = self.parameterTextField.text
 		API.shared.classify(
 			image: image,
 			usingClassifier: currentClassifier,
