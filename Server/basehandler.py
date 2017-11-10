@@ -109,17 +109,17 @@ class BaseHandler(tornado.web.RequestHandler):
         except ValueError:
             e = "%s could not be read as a long integer" % value
             raise HTTPJSONError(1, e)
-
-    def get_float_arg(self, value, default=[], strip=True):
+    
+    def get_string_arg(self, name, default=[], strip=True):
         '''Convenience method for grabbing long integer arguments
            from HTTP headers. Will raise an HTTP error if
            argument is missing or is not an integer
         '''
         try:
-            arg = self.get_argument(value, default, strip)
-            return default if arg == default else float(arg)
+            arg = self.get_argument(name, default, strip)
+            return default if arg == default else string(arg)
         except ValueError:
-            e = "%s could not be read as a long integer" % value
+            e = "%s could not be read as a string" % value
             raise HTTPJSONError(1, e)
 
     def write_json(self, value={}):
