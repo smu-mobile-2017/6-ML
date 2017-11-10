@@ -8,20 +8,10 @@
 
 import UIKit
 
-// https://gist.github.com/phrz/823afe778556113cbe79c6e8c87ce554
-fileprivate func random(in r: ClosedRange<Int>) -> Int {
-	let span = abs(r.upperBound-r.lowerBound)
-	return Int(arc4random_uniform(UInt32(span)))+r.lowerBound
-}
-
 // Implicitly Assigned Raw Values
 // https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID535
 enum NumberLabel: Int {
 	case zero = 0, one, two, three, four, five, six, seven, eight, nine
-	
-	static func random() -> NumberLabel {
-		return NumberLabel(rawValue: Lab6_iOS.random(in: 0...9))!
-	}
 }
 
 public enum APIClassifier: String {
