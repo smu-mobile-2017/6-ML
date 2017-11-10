@@ -149,7 +149,7 @@ class PredictOneFromDatasetId(BaseHandler):
                 self.clf[DSID] = pickle.loads(modelPersistence['model'])
             else:
                 newModel(self, DSID)
-        else if model_selection != self.application.clf_type:
+        elif model_selection != self.application.clf_type:
             self.application.cls_type = model_selection
             newModel(self, DSID)
             
