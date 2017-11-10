@@ -44,7 +44,7 @@ class TestViewController: UIViewController {
 	}
 	
 	@IBAction func didPressTrainModelButton(_ sender: Any) {
-		API.shared.retrain()
+		API.shared.retrain(usingClassifier: currentClassifier)
 	}
 }
 

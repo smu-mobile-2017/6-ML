@@ -176,9 +176,10 @@ class API: NSObject, URLSessionDelegate {
 
 
 
-	func retrain() {
+	func retrain(usingClassifier classifier: APIClassifier) {
 		
-		let url = URL(string: "\(API.serverURL)/UpdateModel")
+		//let url = URL(string: "\(API.serverURL)/UpdateModel")
+		let url = URL(string: "\(API.serverURL)/UpdateModel?classifier=\(classifier.rawValue)")
 		let request: URLRequest = URLRequest(url: url!)
 		
 		let task = self.session.dataTask(with: request)

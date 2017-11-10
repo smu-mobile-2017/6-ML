@@ -120,6 +120,9 @@ class UpdateModelForDatasetId(BaseHandler):
     def get(self):
         '''Train a new model (or update) for given dataset ID
         '''
+        arg1 = self.get_float_arg("arg1",default="none");
+        self.clf_type = get_string_arg("classifier", default="none");
+        print(self.clf_type)
         acc = newModel(self, DSID)
 
         # send back the resubstitution accuracy
