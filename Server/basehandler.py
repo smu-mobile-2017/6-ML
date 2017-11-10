@@ -116,7 +116,7 @@ class BaseHandler(tornado.web.RequestHandler):
            argument is missing 
         '''
         try:
-            arg = get_argument(name, default, strip)
+            arg = self.get_argument(name, default, strip)
             print('arg retrieved: ' + arg)
             return default if arg == default else arg
         except ValueError:
