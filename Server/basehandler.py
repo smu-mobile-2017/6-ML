@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+# Paul Herz
+# Jake Rowland
+# Justin Wilson
+# Seed code: Dr. Larson
+
 # tornado imports
 import tornado.web
 

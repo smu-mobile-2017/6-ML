@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+# Paul Herz
+# Jake Rowland
+# Justin Wilson
+# Seed code: Dr. Larson
+
 from pymongo import MongoClient
 import tornado.web
 
@@ -152,19 +157,11 @@ class PredictOneFromDatasetId(BaseHandler):
         self.clf_type = rx_data['classifier'] #string flag for the model the user wants to use
         sample_image_np = np.array(sample_image_np).reshape(1, -1) #reshape the array
 
-        # #Set default value
-        # param = None
-
-        # #Get passed values if they exist
-        # if 'parameter' in rx_data:
-        #     param = rx_data['parameter'] #get parameter data
-        # print("param " + str(param))
-
         if(self.clf_type == 'KNN'):
             param = self.get_int_arg('parameter', 5)
         else:
             param = self.get_float_arg('parameter', .0001)
-        print("param " + str(param))
+        #print("param " + str(param))
 
         # if model does not exist load the model from the database or build new model
         # Only use parameter when creating a new model, otherwise use existing model

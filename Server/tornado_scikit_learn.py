@@ -6,6 +6,11 @@
 #    something like $./mongod --dbpath "../data/db"
 #    might need to use sudo (yikes!)
 
+# Paul Herz
+# Jake Rowland
+# Justin Wilson
+# Seed code: Dr. Larson
+
 # database imports
 from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError
