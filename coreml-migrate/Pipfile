@@ -7,10 +7,10 @@ name = "pypi"
 
 [packages]
 
-scikit-learn = "*"
-pymongo = "*"
+scipy = "*"
 numpy = "*"
 coremltools = "*"
+scikit-learn = "*"
 
 
 [dev-packages]
