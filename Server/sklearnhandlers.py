@@ -132,7 +132,7 @@ class PredictOneFromDatasetId(BaseHandler):
 
         #vals = data['feature'];
         #fvals = [float(val) for val in vals];
-        #fvals = np.array(fvals).reshape(1, -1)
+        sample_image_np = np.array(sample_image_np).reshape(1, -1)
 
         # load the model from the database (using pickle)
         # we are blocking tornado!! no!!
