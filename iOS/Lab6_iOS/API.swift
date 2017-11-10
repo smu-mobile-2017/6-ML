@@ -117,7 +117,13 @@ class API: NSObject, URLSessionDelegate {
 	) {
 		print("classify(image: ..., usingClassifier: \(classifier.rawValue), parameter: \(parameter ?? "nil"))")
 		
-		let url = URL(string: "\(API.serverURL)/PredictOne")
+		var urlString = "\(API.serverURL)/PredictOne"
+		
+		if let param = parameter, !param.isEmpty {
+			urlString += "?parameter=\(param)"
+		}
+		
+		let url = URL(string: urlString)
 		var request = URLRequest(url: url!)
 		
 		// Resize, matte, and grayscale the image
