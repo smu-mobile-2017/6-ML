@@ -94,9 +94,13 @@ def newModel(self, dsid, parameter):
     #fit the model to the data 
     #print(self.clf_type) #debug message
     if self.clf_type == 'KNN':
+        if parameter == None: 
+            parameter = 5
         c1 = KNeighborsClassifier(n_neighbors = parameter)
         print("parameter: " + str(parameter))
     else:
+        if parameter == None: 
+            parameter = .0001
         c1 = SGDClassifier(loss='log', alpha = parameter)
         print("parameter: " + str(parameter))
     acc = -1
@@ -148,7 +152,15 @@ class PredictOneFromDatasetId(BaseHandler):
         self.clf_type = rx_data['classifier'] #string flag for the model the user wants to use
         sample_image_np = np.array(sample_image_np).reshape(1, -1) #reshape the array
 
+        #Set default value
+        param = None
+
+        #Get passed values if they exist
+        if 'parameter' in rx_data:
+            param = rx_data['parameter'] #get parameter data
+
         # if model does not exist load the model from the database or build new model
+        # Only use parameter when creating a new model, otherwise use existing model
         # we are blocking tornado!! no!!
         if self.clf_type not in self.clf:
             modelPersistence = self.db.models.find_one({"type":self.clf_type})
@@ -157,7 +169,7 @@ class PredictOneFromDatasetId(BaseHandler):
                 self.clf[self.clf_type] = pickle.loads(modelPersistence['model'])
             else:
                 print('Building new model, type ' + self.clf_type)
-                newModel(self, DSID)
+                newModel(self, DSID, param) #if model does not exist creat new model with parameter passed.
 
         predictionArray = self.clf[self.clf_type].predict(sample_image_np)
         predLabel = int(predictionArray[0])
