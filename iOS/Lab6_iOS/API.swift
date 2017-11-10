@@ -109,9 +109,13 @@ class API: NSObject, URLSessionDelegate {
 		task.resume()
 	}
 
-	func classify(image: UIImage, usingClassifier classifier: APIClassifier, callback: @escaping (NumberLabel?,Error?) -> ()) {
-		
-		print("classify(image: ..., usingClassifier: \(classifier.rawValue))")
+	func classify(
+		image: UIImage,
+		usingClassifier classifier: APIClassifier,
+		parameter: String?,
+		callback: @escaping (NumberLabel?,Error?) -> ()
+	) {
+		print("classify(image: ..., usingClassifier: \(classifier.rawValue), parameter: \(parameter ?? "nil"))")
 		
 		let url = URL(string: "\(API.serverURL)/PredictOne")
 		var request = URLRequest(url: url!)
@@ -166,10 +170,18 @@ class API: NSObject, URLSessionDelegate {
 
 
 
-	func retrain(usingClassifier classifier: APIClassifier) {
+	func retrain(
+		usingClassifier classifier: APIClassifier,
+		parameter: String?,
+		callback: @escaping (Double?,Error?) -> ()
+	) {
+		var urlString = "\(API.serverURL)/UpdateModel?classifier=\(classifier.rawValue)"
 		
-		//let url = URL(string: "\(API.serverURL)/UpdateModel")
-		let url = URL(string: "\(API.serverURL)/UpdateModel?classifier=\(classifier.rawValue)")
+		if let parameter = parameter, !parameter.isEmpty {
+			urlString += "&parameter=\(parameter)"
+		}
+		
+		let url = URL(string: urlString)
 		let request: URLRequest = URLRequest(url: url!)
 		
 		let task = self.session.dataTask(with: request)
@@ -183,8 +195,10 @@ class API: NSObject, URLSessionDelegate {
 				return
 			}
 			
-			if let resubAcc = dictionary["resubAccuracy"] {
-				print("Resubstitution Accuracy is", resubAcc)
+			if let accuracy = dictionary["resubAccuracy"] as? Double {
+				callback(accuracy, error)
+			} else {
+				callback(nil, error)
 			}
 		}
 		
