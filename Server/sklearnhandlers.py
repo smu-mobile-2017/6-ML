@@ -151,5 +151,5 @@ class PredictOneFromDatasetId(BaseHandler):
 
         predictionArray = self.clf[self.clf_type].predict(sample_image_np)
         predLabel = int(predictionArray[0])
-        print(predLabel + ", model " + self.clf_type)
+        print(str(predLabel) + ", model " + self.clf_type)
         self.write_json({"prediction":predLabel})
