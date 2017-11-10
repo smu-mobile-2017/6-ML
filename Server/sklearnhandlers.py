@@ -11,6 +11,7 @@ from tornado.options import define, options
 from basehandler import BaseHandler
 
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn import svm
 import pickle
 import base64
 import io
@@ -88,7 +89,10 @@ def newModel(self, dsid):
         l.append(a['label']) #retrieve labels
 
     # fit the model to the data
-    c1 = KNeighborsClassifier(n_neighbors=3)
+    if self.application.cls_type == 'KNN'
+        c1 = KNeighborsClassifier(n_neighbors=3)
+    else
+        c1 = svm.SVC()
     acc = -1
     if l:
         c1.fit(f,l) # training
@@ -145,7 +149,10 @@ class PredictOneFromDatasetId(BaseHandler):
                 self.clf[DSID] = pickle.loads(modelPersistence['model'])
             else:
                 newModel(self, DSID)
-
+        else if model_selection != self.application.clf_type:
+            self.application.cls_type = model_selection
+            newModel(self, DSID)
+            
         predictionArray = self.clf[DSID].predict(sample_image_np)
         predLabel = int(predictionArray[0])
         print(predLabel)
