@@ -80,7 +80,7 @@ class UploadLabeledDatapointHandler(BaseHandler):
 #             newSessionId = float(a['dsid'])+1
 #         self.write_json({"dsid":newSessionId})
 
-def newModel(self, dsid):
+def newModel(self, dsid, parameter):
     # create feature vectors from database
     f=[]
     for a in self.db.labeledinstances.find({"dsid":dsid}):
@@ -94,9 +94,9 @@ def newModel(self, dsid):
     #fit the model to the data 
     #print(self.clf_type) #debug message
     if self.clf_type == 'KNN':
-        c1 = KNeighborsClassifier(n_neighbors=3)
+        c1 = KNeighborsClassifier(n_neighbors = parameter)
     else:
-        c1 = SGDClassifier(loss='log')
+        c1 = SGDClassifier(loss='log', alpha = parameter)
     acc = -1
     if l:
         c1.fit(f,l) # training
@@ -123,7 +123,11 @@ class UpdateModelForDatasetId(BaseHandler):
         '''
 
         self.clf_type = self.get_string_arg("classifier")
-        acc = newModel(self, DSID)
+            if(self.clf_type == 'KNN') 
+                param = self.get_int_arg('parameter', 5)
+            else
+                param = self.get_float_arg('parameter', .0001)
+        acc = newModel(self, DSID, param)
 
         # send back the resubstitution accuracy
         # if training takes a while, we are blocking tornado!! No!!
