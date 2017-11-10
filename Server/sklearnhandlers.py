@@ -91,7 +91,7 @@ def newModel(self, dsid):
     # fit the model to the data
     if self.application.clf_type == 'KNN':
         c1 = KNeighborsClassifier(n_neighbors=3)
-    else
+    else:
         c1 = svm.SVC()
     acc = -1
     if l:
