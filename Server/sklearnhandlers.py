@@ -12,7 +12,7 @@ from basehandler import BaseHandler
 
 from sklearn.neighbors import KNeighborsClassifier
 #from sklearn import svm
-from sklearn.linear_model.SGDClassifier
+from sklearn.linear_model.SGDClassifier import SGDClassifier
 import pickle
 import base64
 import io
