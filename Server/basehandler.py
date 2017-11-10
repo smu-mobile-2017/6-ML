@@ -104,7 +104,7 @@ class BaseHandler(tornado.web.RequestHandler):
            argument is missing or is not an integer
         '''
         try:
-            arg = self.get_argument(value, default, strip)
+            arg = get_argument(value, default, strip)
             return default if arg == default else long(arg)
         except ValueError:
             e = "%s could not be read as a long integer" % value
@@ -112,7 +112,7 @@ class BaseHandler(tornado.web.RequestHandler):
     
     def get_string_arg(self, name, default=[], strip=True):
         '''Convenience method for grabbing long integer arguments
-           from HTTP headers. Will raise an HTTP error if
+           from HTTP headers. Will raise an HTTPdserror if
            argument is missing 
         '''
         try:
