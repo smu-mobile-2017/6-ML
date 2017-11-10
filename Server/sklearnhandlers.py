@@ -146,6 +146,7 @@ class PredictOneFromDatasetId(BaseHandler):
             else:
                 newModel(self, DSID)
 
-        predLabel = self.clf[DSID].predict(sample_image_np).astype(int)[0];
+        predictionArray = self.clf[DSID].predict(sample_image_np)
+	predLabel = int(predictionArray[0])
         print(predLabel)
         self.write_json({"prediction":predLabel})
