@@ -117,7 +117,6 @@ class BaseHandler(tornado.web.RequestHandler):
         '''
         try:
             arg = self.get_argument(name, default, strip)
-            print('arg retrieved: ' + arg)
             return default if arg == default else arg
         except ValueError:
             e = "%s could not be read as a string" % value
