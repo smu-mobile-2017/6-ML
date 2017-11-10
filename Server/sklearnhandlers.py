@@ -95,10 +95,10 @@ def newModel(self, dsid, parameter):
     #print(self.clf_type) #debug message
     if self.clf_type == 'KNN':
         c1 = KNeighborsClassifier(n_neighbors = parameter)
-        print("parameter: " + parameter)
+        print("parameter: " + str(parameter))
     else:
         c1 = SGDClassifier(loss='log', alpha = parameter)
-        print("parameter: " + parameter)
+        print("parameter: " + str(parameter))
     acc = -1
     if l:
         c1.fit(f,l) # training
