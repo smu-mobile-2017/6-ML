@@ -57,6 +57,8 @@ class Application(tornado.web.Application):
         self.clf = {} # the classifier model (in-class assignment, you might need to change this line!)
         # but depending on your implementation, you may not need to change it  ¯\_(ツ)_/¯
 
+        self.clf_type = 'KNN' #Set the default clf type to KNN, other option is SVM
+
         settings = {'debug':True}
         tornado.web.Application.__init__(self, handlers, **settings)
 
