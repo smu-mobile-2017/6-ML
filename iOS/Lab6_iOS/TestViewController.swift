@@ -30,7 +30,7 @@ class TestViewController: UIViewController {
 		switch classifier {
 		case .kNearestNeighbors:
 			modelSwitch.isOn = true
-		case .supportVectorMachine:
+		case .stochasticGradientDescent:
 			modelSwitch.isOn = false
 		}
 	}
@@ -39,7 +39,7 @@ class TestViewController: UIViewController {
 		if modelSwitch.isOn {
 			currentClassifier = .kNearestNeighbors
 		} else {
-			currentClassifier = .supportVectorMachine
+			currentClassifier = .stochasticGradientDescent
 		}
 	}
 	

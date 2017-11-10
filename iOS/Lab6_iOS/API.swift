@@ -16,7 +16,7 @@ enum NumberLabel: Int {
 
 public enum APIClassifier: String {
 	case kNearestNeighbors = "KNN"
-	case supportVectorMachine = "SVM"
+	case stochasticGradientDescent = "SGD"
 }
 
 enum APIError: Error {
