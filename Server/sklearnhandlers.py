@@ -88,12 +88,12 @@ def newModel(self, dsid):
     for a in self.db.labeledinstances.find({"dsid":dsid}):
         l.append(a['label']) #retrieve labels
 
-    # fit the model to the data
+    fit the model to the data
     print(self.application.clf_type)
-    #if self.application.clf_type == 'KNN':
-    c1 = KNeighborsClassifier(n_neighbors=3)
-    #else:
-        #c1 = svm.SVC()
+    if self.application.clf_type == 'KNN':
+        c1 = KNeighborsClassifier(n_neighbors=3)
+    else:
+        c1 = svm.SVC()
     acc = -1
     if l:
         c1.fit(f,l) # training
@@ -104,7 +104,7 @@ def newModel(self, dsid):
         bytes = pickle.dumps(c1)
 
         self.db.models.update(
-            {"dsid": dsid},
+            {"type": self.application.clf_type},
             {"$set":
                 {
                     "model": Binary(bytes)
@@ -145,7 +145,7 @@ class PredictOneFromDatasetId(BaseHandler):
 
         if DSID not in self.clf:
             print('Loading Model From DB')
-            modelPersistence = self.db.models.find_one({"dsid":DSID})
+            modelPersistence = self.db.models.find_one({"type":self.application.clf_type})
             if modelPersistence:
                 self.clf[DSID] = pickle.loads(modelPersistence['model'])
             else:
