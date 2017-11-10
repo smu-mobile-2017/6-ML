@@ -120,7 +120,8 @@ class UpdateModelForDatasetId(BaseHandler):
     def get(self):
         '''Train a new model (or update) for given dataset ID
         '''
-        self.clf_type = get_string_arg("classifier", default="none");
+        #get_string_arg(self, name, default=[], strip=True):
+        self.clf_type = get_string_arg(self, "classifier", default="none");
         print(self.clf_type)
         acc = newModel(self, DSID)
 
