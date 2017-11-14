@@ -12,6 +12,8 @@ numpy = "*"
 coremltools = "*"
 scikit-learn = "*"
 sklearn = "*"
+future = "*"
+mnist = "*"
 
 
 [dev-packages]
