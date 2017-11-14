@@ -11,6 +11,7 @@ scipy = "*"
 numpy = "*"
 coremltools = "*"
 scikit-learn = "*"
+sklearn = "*"
 
 
 [dev-packages]
