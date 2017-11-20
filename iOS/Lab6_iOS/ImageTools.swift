@@ -136,7 +136,7 @@ class ImageTools {
 			data: nil,
 			width: cg.width,
 			height: cg.height,
-			bitsPerComponent: 8, //by product of little endianess
+			bitsPerComponent: 8,
 			bytesPerRow: 0,
 			space: grayscale,
 			bitmapInfo: CGImageAlphaInfo.none.rawValue) else {
@@ -145,32 +145,14 @@ class ImageTools {
 			}
 		
 		
-		//set64 bits get data and copy
+		
 		ctx.draw(cg, in: rect)
-		//init(bytes: UnsafeRawPointer, count: Int)
-
+		
 		var imageData = Data.init(bytes: ctx.data!, count: cg.width * cg.height).map { Double($0) }
 		imageData = imageData.map{abs($0 - 255.0)}
 		print(imageData)
 		var imageMultiArray: MLMultiArray? = nil
 		
-		
-		//		imageData.withUnsafeMutableBytes { (pointer: UnsafeMutablePointer<UInt8>) in
-		//			do {
-		//				let rawPointer = UnsafeMutableRawPointer(pointer)
-		//				imageArray = try MLMultiArray(
-		//					dataPointer: rawPointer,
-		//					shape: [28, 28],
-		//					dataType: .double,
-		//					strides: [1, 1],
-		//					deallocator: nil
-		//				)
-		//			} catch {
-		//				print("Cannot generate MLMultiArray from image. Stopping.")
-		//				callback(nil, error)
-		//				return
-		//			}
-		//}
 		imageData.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) -> Void in
 			do {
 				//let rawPointer = pointer.baseAddress
