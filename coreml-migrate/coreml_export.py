@@ -27,22 +27,24 @@ y_train = mnist.train_labels()
 x_test = flat(mnist.test_images())
 y_test = mnist.test_labels()
 
-# Training
-print('Training the model...')
-# [CITE] http://scikit-learn.org/stable/auto_examples/linear_model/plot_sparse_logistic_regression_mnist.html
-clf = LogisticRegression(
-	verbose=1,
-	C=50. / len(x_train),
-	multi_class='ovr', # coreml does not support multinomial
-	penalty='l1', solver='saga', tol=0.1
-)
-clf.fit(x_train, y_train)
+print(x_train[6])
 
-# Testing
-from sklearn.metrics import accuracy_score
-acc = accuracy_score(y_test, clf.predict(x_test))
-print(acc,'accuracy.')
+# # Training
+# print('Training the model...')
+# # [CITE] http://scikit-learn.org/stable/auto_examples/linear_model/plot_sparse_logistic_regression_mnist.html
+# clf = LogisticRegression(
+# 	verbose=1,
+# 	C=50. / len(x_train),
+# 	multi_class='ovr', # coreml does not support multinomial
+# 	penalty='l1', solver='saga', tol=0.1
+# )
+# clf.fit(x_train, y_train)
 
-# Exporting
-coreml_model = coremltools.converters.sklearn.convert(clf)
-coreml_model.save('DigitRecognizer.mlmodel')
+# # Testing
+# from sklearn.metrics import accuracy_score
+# acc = accuracy_score(y_test, clf.predict(x_test))
+# print(acc,'accuracy.')
+
+# # Exporting
+# coreml_model = coremltools.converters.sklearn.convert(clf)
+# coreml_model.save('DigitRecognizer.mlmodel')

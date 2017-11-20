@@ -15,10 +15,10 @@
 		27F25C821FB3B14100E0F658 /* DrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27F25C7E1FB3B14100E0F658 /* DrawView.xib */; };
 		27F25C831FB3B14100E0F658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27F25C801FB3B14100E0F658 /* Main.storyboard */; };
 		945A9E9837EFB0DE9307D3EC /* Pods_Lab6_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B49D7D56985689BF855BC /* Pods_Lab6_iOS.framework */; };
+		E207D21A1FC39B3600D11CE0 /* DigitRecognizer.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E207D2191FC39B3600D11CE0 /* DigitRecognizer.mlmodel */; };
 		E286C5751FB37ECA00A11B15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286C5741FB37ECA00A11B15 /* AppDelegate.swift */; };
 		E286C57C1FB37ECA00A11B15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E286C57B1FB37ECA00A11B15 /* Assets.xcassets */; };
 		E286C58D1FB38A0F00A11B15 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286C58C1FB38A0F00A11B15 /* API.swift */; };
-		E2D076AA1FBB951100CC6230 /* DigitRecognizer.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E2D076A91FBB951000CC6230 /* DigitRecognizer.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +32,12 @@
 		32688EB7A6F55DA17F3AB538 /* Pods-Lab6_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lab6_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lab6_iOS/Pods-Lab6_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		696B49D7D56985689BF855BC /* Pods_Lab6_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lab6_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8468DD3930612235CAF8053 /* Pods-Lab6_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lab6_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lab6_iOS/Pods-Lab6_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		E207D2191FC39B3600D11CE0 /* DigitRecognizer.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DigitRecognizer.mlmodel; path = "../../coreml-migrate/DigitRecognizer.mlmodel"; sourceTree = "<group>"; };
 		E286C5711FB37ECA00A11B15 /* Lab6_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab6_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E286C5741FB37ECA00A11B15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E286C57B1FB37ECA00A11B15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E286C5801FB37ECA00A11B15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E286C58C1FB38A0F00A11B15 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		E2D076A91FBB951000CC6230 /* DigitRecognizer.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DigitRecognizer.mlmodel; path = "../../coreml-migrate/DigitRecognizer.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,7 @@
 		E286C5731FB37ECA00A11B15 /* Lab6_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				E2D076A91FBB951000CC6230 /* DigitRecognizer.mlmodel */,
+				E207D2191FC39B3600D11CE0 /* DigitRecognizer.mlmodel */,
 				E286C5741FB37ECA00A11B15 /* AppDelegate.swift */,
 				E286C58C1FB38A0F00A11B15 /* API.swift */,
 				27508D731FB3B968001B6519 /* ImageTools.swift */,
@@ -248,7 +248,7 @@
 				27DCE5CA1FB5330D00727B04 /* UIView+Edges.swift in Sources */,
 				E286C58D1FB38A0F00A11B15 /* API.swift in Sources */,
 				2775A2CF1FB3B3C800AE2AAC /* DrawView.swift in Sources */,
-				E2D076AA1FBB951100CC6230 /* DigitRecognizer.mlmodel in Sources */,
+				E207D21A1FC39B3600D11CE0 /* DigitRecognizer.mlmodel in Sources */,
 				27508D7A1FB3C0D5001B6519 /* TestViewController.swift in Sources */,
 				27508D741FB3B968001B6519 /* ImageTools.swift in Sources */,
 			);

@@ -150,6 +150,7 @@ class ImageTools {
 		//init(bytes: UnsafeRawPointer, count: Int)
 
 		var imageData = Data.init(bytes: ctx.data!, count: cg.width * cg.height).map { Double($0) }
+		imageData = imageData.map{abs($0 - 255.0)}
 		print(imageData)
 		var imageMultiArray: MLMultiArray? = nil
 		
