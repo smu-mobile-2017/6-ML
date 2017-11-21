@@ -110,16 +110,15 @@ class ImageTools {
 			width: cg.width,
 			height: cg.height,
 			bitsPerComponent: 8,
-			bytesPerRow: 0,
+			bytesPerRow: cg.width, //Every pixel is 1 byte, 1 byte x cg.width = cg.width
 			space: grayscale,
 			bitmapInfo: CGImageAlphaInfo.none.rawValue
 		) else {
 			print("[ImageTools.scale(image:toExactly:)] could not initialize CGContext.")
 			return nil
 		}
-		//set64 bits get data and copy
-		ctx.draw(cg, in: rect)
 		
+		ctx.draw(cg, in: rect)
 		return ctx.makeImage().flatMap { UIImage(cgImage: $0) }
 	}
 	
@@ -137,22 +136,34 @@ class ImageTools {
 			width: cg.width,
 			height: cg.height,
 			bitsPerComponent: 8,
-			bytesPerRow: 0,
+			bytesPerRow: cg.width, //Every pixel is 1 byte, 1 byte x cg.width = cg.width
 			space: grayscale,
-			bitmapInfo: CGImageAlphaInfo.none.rawValue) else {
+			bitmapInfo: CGImageAlphaInfo.none.rawValue
+			) else {
 				print("[ImageTools.scale(image:toExactly:)] could not initialize CGContext.")
 				return nil
 			}
-		
-		
 		
 		ctx.draw(cg, in: rect)
 		
 		var imageData = Data.init(bytes: ctx.data!, count: cg.width * cg.height).map { Double($0) }
 		imageData = imageData.map{abs($0 - 255.0)}
-		print(imageData)
-		var imageMultiArray: MLMultiArray? = nil
 		
+		//debugging code... not pretty but it works, prints the matrix 28 x 28
+		print("Before MultiArray..")
+		var i = 0
+		for element in imageData {
+			print(element, terminator:" ")
+			i += 1
+			if (i >= 28) {
+				i = 0
+				print(" ")
+			}
+		}
+		print("Done")
+		
+		var imageMultiArray: MLMultiArray? = nil
+		//imageMultiArray = MLMultiArray.init(shape: [28, 28], imageData)
 		imageData.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) -> Void in
 			do {
 				//let rawPointer = pointer.baseAddress
@@ -160,7 +171,7 @@ class ImageTools {
 					dataPointer: pointer.baseAddress!,
 					shape: [28, 28],
 					dataType: .double,
-					strides: [1, 1],
+					strides: [28, 1],
 					deallocator: nil //Could lead to a memory hole
 				)
 			} catch {
@@ -168,6 +179,7 @@ class ImageTools {
 			}
 		}
 		
+		print(imageMultiArray!)  //debug, print the multiArray
 		return imageMultiArray
 	}
 }

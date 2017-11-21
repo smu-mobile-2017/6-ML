@@ -27,7 +27,7 @@ class API {
 	private func prepare(image: UIImage) -> MLMultiArray? {
 		var newImage = ImageTools.resize(image: image, to: (28,28))
 		newImage = ImageTools.convertAlpha(image: newImage!, toMatte: .white)
-		
+
 		return ImageTools.convertToGrayscale(image: newImage!)
 		//let data: NSData? = newImage?.cgImage?.dataProvider?.data
 	}
@@ -44,7 +44,7 @@ class API {
 			return
 		}
 		
-		print(imageArray)
+		//print(imageArray)
 		let imageInput: DigitRecognizerInput = DigitRecognizerInput(input: imageArray)
 		
 		do {
